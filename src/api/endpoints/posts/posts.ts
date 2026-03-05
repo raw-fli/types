@@ -30,14 +30,14 @@ import type {
 } from '@tanstack/react-query';
 
 import type {
-  CommentResponseDto,
+  CommentResponseDtoResponse,
   CreateCommentDto,
   CreatePostDto,
-  DeletedCommentResponseDto,
-  DeletedPostResponseDto,
-  LikePostResponseDto,
-  PostListResponseDto,
-  PostResponseDto,
+  DeletedCommentResponseDtoResponse,
+  DeletedPostResponseDtoResponse,
+  LikePostResponseDtoResponse,
+  PostListResponseDtoResponse,
+  PostResponseDtoResponse,
   PostsControllerGetDeletedPosts200,
   PostsControllerGetPostsParams,
   PostsControllerToggleLike201
@@ -58,7 +58,7 @@ export const postsControllerGetPosts = (
 ) => {
       
       
-      return customAxiosInstance<PostListResponseDto>(
+      return customAxiosInstance<PostListResponseDtoResponse>(
       {url: `/api/v1/boards/${boardId}/posts`, method: 'GET',
         params, signal
     },
@@ -233,7 +233,7 @@ export const postsControllerCreatePost = (
 ) => {
       
       
-      return customAxiosInstance<PostResponseDto>(
+      return customAxiosInstance<PostResponseDtoResponse>(
       {url: `/api/v1/boards/${boardId}/posts`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
       data: createPostDto, signal
@@ -297,7 +297,7 @@ export const postsControllerGetPost = (
 ) => {
       
       
-      return customAxiosInstance<PostResponseDto>(
+      return customAxiosInstance<PostResponseDtoResponse>(
       {url: `/api/v1/boards/${boardId}/posts/${postId}`, method: 'GET', signal
     },
       );
@@ -471,7 +471,7 @@ export const postsControllerDeletePost = (
 ) => {
       
       
-      return customAxiosInstance<DeletedPostResponseDto>(
+      return customAxiosInstance<DeletedPostResponseDtoResponse>(
       {url: `/api/v1/boards/${boardId}/posts/${postId}`, method: 'DELETE', signal
     },
       );
@@ -533,7 +533,7 @@ export const postsControllerToggleLike = (
 ) => {
       
       
-      return customAxiosInstance<LikePostResponseDto | PostsControllerToggleLike201>(
+      return customAxiosInstance<LikePostResponseDtoResponse | PostsControllerToggleLike201>(
       {url: `/api/v1/boards/${boardId}/posts/${postId}/like`, method: 'POST', signal
     },
       );
@@ -596,7 +596,7 @@ export const postsControllerCreateComment = (
 ) => {
       
       
-      return customAxiosInstance<CommentResponseDto>(
+      return customAxiosInstance<CommentResponseDtoResponse>(
       {url: `/api/v1/boards/${boardId}/posts/${postId}/comments`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
       data: createCommentDto, signal
@@ -661,7 +661,7 @@ export const postsControllerDeleteComment = (
 ) => {
       
       
-      return customAxiosInstance<DeletedCommentResponseDto>(
+      return customAxiosInstance<DeletedCommentResponseDtoResponse>(
       {url: `/api/v1/boards/${boardId}/posts/${postId}/comments/${commentId}`, method: 'DELETE', signal
     },
       );

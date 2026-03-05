@@ -33,14 +33,14 @@ import type {
   ArticleControllerGetArticlesParams,
   ArticleControllerGetPopularArticlesParams,
   ArticleControllerToggleLike201,
-  ArticleListResponseDto,
-  ArticleResponseDto,
-  CommentResponseDto,
+  ArticleListResponseDtoResponse,
+  ArticleResponseDtoResponse,
+  CommentResponseDtoResponse,
   CreateArticleDto,
   CreateCommentDto,
-  DeletedArticleResponseDto,
-  DeletedCommentResponseDto,
-  LikePostResponseDto
+  DeletedArticleResponseDtoResponse,
+  DeletedCommentResponseDtoResponse,
+  LikePostResponseDtoResponse
 } from '../../model';
 
 import { customAxiosInstance } from '../../../mutator';
@@ -58,7 +58,7 @@ export const articleControllerGetArticles = (
 ) => {
       
       
-      return customAxiosInstance<ArticleListResponseDto>(
+      return customAxiosInstance<ArticleListResponseDtoResponse>(
       {url: `/api/v1/boards/${boardId}/articles`, method: 'GET',
         params, signal
     },
@@ -233,7 +233,7 @@ export const articleControllerCreateArticle = (
 ) => {
       
       
-      return customAxiosInstance<ArticleResponseDto>(
+      return customAxiosInstance<ArticleResponseDtoResponse>(
       {url: `/api/v1/boards/${boardId}/articles`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
       data: createArticleDto, signal
@@ -297,7 +297,7 @@ export const articleControllerGetPopularArticles = (
 ) => {
       
       
-      return customAxiosInstance<ArticleListResponseDto>(
+      return customAxiosInstance<ArticleListResponseDtoResponse>(
       {url: `/api/v1/boards/${boardId}/articles/popular`, method: 'GET',
         params, signal
     },
@@ -472,7 +472,7 @@ export const articleControllerGetArticle = (
 ) => {
       
       
-      return customAxiosInstance<ArticleResponseDto>(
+      return customAxiosInstance<ArticleResponseDtoResponse>(
       {url: `/api/v1/boards/${boardId}/articles/${articleId}`, method: 'GET', signal
     },
       );
@@ -646,7 +646,7 @@ export const articleControllerDeleteArticle = (
 ) => {
       
       
-      return customAxiosInstance<DeletedArticleResponseDto>(
+      return customAxiosInstance<DeletedArticleResponseDtoResponse>(
       {url: `/api/v1/boards/${boardId}/articles/${articleId}`, method: 'DELETE', signal
     },
       );
@@ -708,7 +708,7 @@ export const articleControllerToggleLike = (
 ) => {
       
       
-      return customAxiosInstance<LikePostResponseDto | ArticleControllerToggleLike201>(
+      return customAxiosInstance<LikePostResponseDtoResponse | ArticleControllerToggleLike201>(
       {url: `/api/v1/boards/${boardId}/articles/${articleId}/like`, method: 'POST', signal
     },
       );
@@ -771,7 +771,7 @@ export const articleControllerCreateComment = (
 ) => {
       
       
-      return customAxiosInstance<CommentResponseDto>(
+      return customAxiosInstance<CommentResponseDtoResponse>(
       {url: `/api/v1/boards/${boardId}/articles/${articleId}/comments`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
       data: createCommentDto, signal
@@ -836,7 +836,7 @@ export const articleControllerDeleteComment = (
 ) => {
       
       
-      return customAxiosInstance<DeletedCommentResponseDto>(
+      return customAxiosInstance<DeletedCommentResponseDtoResponse>(
       {url: `/api/v1/boards/${boardId}/articles/${articleId}/comments/${commentId}`, method: 'DELETE', signal
     },
       );

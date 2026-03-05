@@ -26,10 +26,11 @@ import type {
 } from '@tanstack/react-query';
 
 import type {
-  BoardResponseDto,
+  BoardResponseDtoArrayResponse,
+  BoardResponseDtoResponse,
   BoardsControllerSearchInAllBoardsParams,
   BoardsControllerSearchInBoardParams,
-  SearchResultsResponseDto
+  SearchResultsResponseDtoResponse
 } from '../../model';
 
 import { customAxiosInstance } from '../../../mutator';
@@ -46,7 +47,7 @@ export const boardsControllerGetBoards = (
 ) => {
       
       
-      return customAxiosInstance<BoardResponseDto[]>(
+      return customAxiosInstance<BoardResponseDtoArrayResponse>(
       {url: `/api/v1/boards`, method: 'GET', signal
     },
       );
@@ -207,7 +208,7 @@ export const boardsControllerSearchInAllBoards = (
 ) => {
       
       
-      return customAxiosInstance<SearchResultsResponseDto>(
+      return customAxiosInstance<SearchResultsResponseDtoResponse>(
       {url: `/api/v1/boards/search`, method: 'GET',
         params, signal
     },
@@ -369,7 +370,7 @@ export const boardsControllerGetBoard = (
 ) => {
       
       
-      return customAxiosInstance<BoardResponseDto>(
+      return customAxiosInstance<BoardResponseDtoResponse>(
       {url: `/api/v1/boards/${boardId}`, method: 'GET', signal
     },
       );
@@ -531,7 +532,7 @@ export const boardsControllerSearchInBoard = (
 ) => {
       
       
-      return customAxiosInstance<SearchResultsResponseDto>(
+      return customAxiosInstance<SearchResultsResponseDtoResponse>(
       {url: `/api/v1/boards/${boardId}/search`, method: 'GET',
         params, signal
     },
