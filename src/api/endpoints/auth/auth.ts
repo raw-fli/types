@@ -16,9 +16,10 @@ import type {
 } from '@tanstack/react-query';
 
 import type {
-  AuthControllerLogin201,
   CreateUserDto,
-  LoginUserDto
+  LoginUserDto,
+  TokenDtoResponse,
+  UserResponseDtoResponse
 } from '../../model';
 
 import { customAxiosInstance } from '../../../mutator';
@@ -35,7 +36,7 @@ export const authControllerSignUp = (
 ) => {
       
       
-      return customAxiosInstance<unknown>(
+      return customAxiosInstance<UserResponseDtoResponse>(
       {url: `/api/v1/auth/signup`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
       data: createUserDto, signal
@@ -98,7 +99,7 @@ export const authControllerLogin = (
 ) => {
       
       
-      return customAxiosInstance<unknown | AuthControllerLogin201>(
+      return customAxiosInstance<TokenDtoResponse>(
       {url: `/api/v1/auth/login`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
       data: loginUserDto, signal

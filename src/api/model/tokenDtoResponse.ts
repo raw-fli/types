@@ -5,11 +5,10 @@
  * The Rawfli API description
  * OpenAPI spec version: 1.0
  */
+import type { TokenDto } from './tokenDto';
 
-export interface UserResponseDto {
-  id: number;
-  email: string;
-  username: string;
-  createdAt: string;
-  password: string;
+export interface TokenDtoResponse {
+  result: boolean;
+  code: number;
+  data: TokenDto;
 }

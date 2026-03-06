@@ -66,4 +66,7 @@ export * from './searchResultItemResponseDto';
 export * from './searchResultItemResponseDtoType';
 export * from './searchResultsResponseDto';
 export * from './searchResultsResponseDtoResponse';
+export * from './tokenDto';
+export * from './tokenDtoResponse';
 export * from './userResponseDto';
+export * from './userResponseDtoResponse';

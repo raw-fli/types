@@ -6,10 +6,7 @@
  * OpenAPI spec version: 1.0
  */
 
-export interface UserResponseDto {
-  id: number;
-  email: string;
-  username: string;
-  createdAt: string;
-  password: string;
+export interface TokenDto {
+  /** JWT 토큰 */
+  token: string;
 }
