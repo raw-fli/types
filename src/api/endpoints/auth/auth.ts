@@ -17,7 +17,6 @@ import type {
 
 import type {
   AuthControllerLogin201,
-  AuthControllerSignUp201,
   CreateUserDto,
   LoginUserDto
 } from '../../model';
@@ -36,7 +35,7 @@ export const authControllerSignUp = (
 ) => {
       
       
-      return customAxiosInstance<AuthControllerSignUp201>(
+      return customAxiosInstance<unknown>(
       {url: `/api/v1/auth/signup`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
       data: createUserDto, signal
@@ -99,7 +98,7 @@ export const authControllerLogin = (
 ) => {
       
       
-      return customAxiosInstance<AuthControllerLogin201>(
+      return customAxiosInstance<unknown | AuthControllerLogin201>(
       {url: `/api/v1/auth/login`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
       data: loginUserDto, signal
