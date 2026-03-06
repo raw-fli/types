@@ -10,6 +10,7 @@ import type { UserResponseDto } from './userResponseDto';
 export interface ArticleListItemResponseDto {
   id: number;
   title: string;
+  content: string;
   author: UserResponseDto;
   views: number;
   commentCount: number;
