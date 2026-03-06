@@ -6,4 +6,10 @@
  * OpenAPI spec version: 1.0
  */
 
-export type SearchResultItemResponseDtoType = { [key: string]: unknown };
+export type SearchResultItemResponseDtoType = typeof SearchResultItemResponseDtoType[keyof typeof SearchResultItemResponseDtoType];
+
+
+export const SearchResultItemResponseDtoType = {
+  post: 'post',
+  article: 'article',
+} as const;
