@@ -31,7 +31,8 @@ import type {
 
 import type {
   AwsControllerGetImages200,
-  AwsControllerUploadFile201
+  AwsControllerUploadFile201,
+  AwsControllerUploadFileBody
 } from '../../model';
 
 import { customAxiosInstance } from '../../../mutator';
@@ -195,13 +196,18 @@ export function useAwsControllerGetImages<TData = Awaited<ReturnType<typeof awsC
  * @summary 이미지 업로드
  */
 export const awsControllerUploadFile = (
-    
+    awsControllerUploadFileBody: AwsControllerUploadFileBody,
  signal?: AbortSignal
 ) => {
       
-      
+      const formData = new FormData();
+if(awsControllerUploadFileBody.image !== undefined) {
+ formData.append(`image`, awsControllerUploadFileBody.image);
+ }
+
       return customAxiosInstance<AwsControllerUploadFile201>(
-      {url: `/api/v1/aws/upload`, method: 'POST', signal
+      {url: `/api/v1/aws/upload`, method: 'POST',
+       data: formData, signal
     },
       );
     }
@@ -209,8 +215,8 @@ export const awsControllerUploadFile = (
 
 
 export const getAwsControllerUploadFileMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof awsControllerUploadFile>>, TError,void, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof awsControllerUploadFile>>, TError,void, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof awsControllerUploadFile>>, TError,{data: AwsControllerUploadFileBody}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof awsControllerUploadFile>>, TError,{data: AwsControllerUploadFileBody}, TContext> => {
 
 const mutationKey = ['awsControllerUploadFile'];
 const {mutation: mutationOptions} = options ?
@@ -222,10 +228,10 @@ const {mutation: mutationOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof awsControllerUploadFile>>, void> = () => {
-          
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof awsControllerUploadFile>>, {data: AwsControllerUploadFileBody}> = (props) => {
+          const {data} = props ?? {};
 
-          return  awsControllerUploadFile()
+          return  awsControllerUploadFile(data,)
         }
 
 
@@ -236,18 +242,18 @@ const {mutation: mutationOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type AwsControllerUploadFileMutationResult = NonNullable<Awaited<ReturnType<typeof awsControllerUploadFile>>>
-    
+    export type AwsControllerUploadFileMutationBody = AwsControllerUploadFileBody
     export type AwsControllerUploadFileMutationError = unknown
 
     /**
  * @summary 이미지 업로드
  */
 export const useAwsControllerUploadFile = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof awsControllerUploadFile>>, TError,void, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof awsControllerUploadFile>>, TError,{data: AwsControllerUploadFileBody}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof awsControllerUploadFile>>,
         TError,
-        void,
+        {data: AwsControllerUploadFileBody},
         TContext
       > => {
       return useMutation(getAwsControllerUploadFileMutationOptions(options), queryClient);

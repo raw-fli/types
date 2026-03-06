@@ -19,6 +19,7 @@ export * from './authControllerLogin201';
 export * from './authControllerSignUp201';
 export * from './awsControllerGetImages200';
 export * from './awsControllerUploadFile201';
+export * from './awsControllerUploadFileBody';
 export * from './boardResponseDto';
 export * from './boardResponseDtoArrayResponse';
 export * from './boardResponseDtoResponse';
