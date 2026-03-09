@@ -32,7 +32,8 @@ import type {
 import type {
   AwsControllerGetImages200,
   AwsControllerUploadFile201,
-  AwsControllerUploadFileBody
+  AwsControllerUploadFileBody,
+  Image
 } from '../../model';
 
 import { customAxiosInstance } from '../../../mutator';
@@ -205,7 +206,7 @@ if(awsControllerUploadFileBody.image !== undefined) {
  formData.append(`image`, awsControllerUploadFileBody.image);
  }
 
-      return customAxiosInstance<AwsControllerUploadFile201>(
+      return customAxiosInstance<Image | AwsControllerUploadFile201>(
       {url: `/api/v1/aws/upload`, method: 'POST',
        data: formData, signal
     },
