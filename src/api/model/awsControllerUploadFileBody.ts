@@ -7,5 +7,5 @@
  */
 
 export type AwsControllerUploadFileBody = {
-  image?: Blob;
+  images?: Blob[];
 };

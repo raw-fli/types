@@ -202,11 +202,11 @@ export const awsControllerUploadFile = (
 ) => {
       
       const formData = new FormData();
-if(awsControllerUploadFileBody.image !== undefined) {
- formData.append(`image`, awsControllerUploadFileBody.image);
+if(awsControllerUploadFileBody.images !== undefined) {
+ awsControllerUploadFileBody.images.forEach(value => formData.append(`images`, value));
  }
 
-      return customAxiosInstance<Image | AwsControllerUploadFile201>(
+      return customAxiosInstance<Image[] | AwsControllerUploadFile201>(
       {url: `/api/v1/aws/upload`, method: 'POST',
        data: formData, signal
     },
