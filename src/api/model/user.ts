@@ -6,6 +6,7 @@
  * OpenAPI spec version: 1.0
  */
 import type { Comment } from './comment';
+import type { Follow } from './follow';
 import type { Image } from './image';
 import type { Photo } from './photo';
 import type { Post } from './post';
@@ -14,6 +15,8 @@ export interface User {
   email: string;
   username: string;
   password: string;
+  /** @nullable */
+  profileImageKey: string | null;
   posts: Post[];
   comments: Comment[];
   images: Image[];
@@ -21,4 +24,6 @@ export interface User {
   likedPosts: Post[];
   likedPhotos: Photo[];
   blockedUsers: User[];
+  followers: Follow[];
+  followings: Follow[];
 }
