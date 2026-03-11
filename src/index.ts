@@ -4,4 +4,5 @@ export * from './api/endpoints/auth/auth';
 export * from './api/endpoints/aws/aws';
 export * from './api/endpoints/boards/boards';
 export * from './api/endpoints/posts/posts';
+export * from './api/endpoints/users/users';
 export { configureApiClient } from './mutator';
