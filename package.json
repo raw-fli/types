@@ -1,6 +1,6 @@
 {
   "name": "@rawfli/types",
-  "version": "0.0.13",
+  "version": "0.1.0",
   "description": "Rawfli API client — generated types and React Query hooks",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
