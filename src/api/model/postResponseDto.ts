@@ -5,7 +5,6 @@
  * The Rawfli API description
  * OpenAPI spec version: 1.0
  */
-import type { CommentResponseDto } from './commentResponseDto';
 import type { UserResponseDto } from './userResponseDto';
 
 export interface PostResponseDto {
@@ -13,9 +12,5 @@ export interface PostResponseDto {
   title: string;
   content: string;
   author: UserResponseDto;
-  views: number;
-  likesCount: number;
-  comments: CommentResponseDto[];
   createdAt: string;
-  updatedAt: string;
 }

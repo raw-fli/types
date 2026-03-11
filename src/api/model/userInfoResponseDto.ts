@@ -5,14 +5,14 @@
  * The Rawfli API description
  * OpenAPI spec version: 1.0
  */
-import type { PostResponseDto } from './postResponseDto';
+import type { ArticleListItemResponseDto } from './articleListItemResponseDto';
 
 export interface UserInfoResponseDto {
   id: number;
   username: string;
   /** @nullable */
   profileImageKey?: string | null;
-  posts: PostResponseDto[];
+  articles: ArticleListItemResponseDto[];
   followerCount: number;
   followingCount: number;
   createdAt: string;

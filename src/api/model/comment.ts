@@ -5,12 +5,12 @@
  * The Rawfli API description
  * OpenAPI spec version: 1.0
  */
+import type { Article } from './article';
 import type { Comment as __Comment } from './comment';
-import type { Post } from './post';
 import type { User } from './user';
 
 export interface Comment {
-  post: Post;
+  article: Article;
   author: User;
   content: string;
   replies: Comment[];

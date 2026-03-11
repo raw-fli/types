@@ -6,13 +6,19 @@
  * OpenAPI spec version: 1.0
  */
 import type { Board } from './board';
+import type { Comment } from './comment';
+import type { Image } from './image';
 import type { Photo } from './photo';
 import type { User } from './user';
 
-export interface Post {
+export interface Article {
   board: Board;
   author: User;
   title: string;
   content: string;
-  photos: Photo[];
+  likes: User[];
+  views: number;
+  comments: Comment[];
+  referencedPhotos: Photo[];
+  attachedImages: Image[];
 }

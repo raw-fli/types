@@ -5,15 +5,15 @@
  * The Rawfli API description
  * OpenAPI spec version: 1.0
  */
-import type { GalleryPost } from './galleryPost';
 import type { Image } from './image';
 import type { PhotoReferencedInArticlesItem } from './photoReferencedInArticlesItem';
+import type { Post } from './post';
 import type { User } from './user';
 
 export interface Photo {
   id: string;
   image: Image;
-  post: GalleryPost;
+  post: Post;
   author: User;
   description?: string;
   likes: User[];

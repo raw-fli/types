@@ -6,6 +6,7 @@
  * OpenAPI spec version: 1.0
  */
 
+export * from './article';
 export * from './articleControllerGetArticlesParams';
 export * from './articleControllerGetPopularArticlesParams';
 export * from './articleControllerToggleLike201';
@@ -50,6 +51,7 @@ export * from './follow';
 export * from './galleryPost';
 export * from './image';
 export * from './likeArticleResponseDto';
+export * from './likeArticleResponseDtoResponse';
 export * from './likePostResponseDto';
 export * from './likePostResponseDtoResponse';
 export * from './loginUserDto';

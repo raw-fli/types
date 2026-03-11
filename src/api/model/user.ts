@@ -5,6 +5,7 @@
  * The Rawfli API description
  * OpenAPI spec version: 1.0
  */
+import type { Article } from './article';
 import type { Comment } from './comment';
 import type { Follow } from './follow';
 import type { Image } from './image';
@@ -17,11 +18,12 @@ export interface User {
   password: string;
   /** @nullable */
   profileImageKey: string | null;
+  articles: Article[];
   posts: Post[];
   comments: Comment[];
   images: Image[];
   photos: Photo[];
-  likedPosts: Post[];
+  likedArticles: Article[];
   likedPhotos: Photo[];
   blockedUsers: User[];
   followers: Follow[];

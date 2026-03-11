@@ -40,7 +40,7 @@ import type {
   CreateCommentDto,
   DeletedArticleResponseDtoResponse,
   DeletedCommentResponseDtoResponse,
-  LikePostResponseDtoResponse
+  LikeArticleResponseDtoResponse
 } from '../../model';
 
 import { customAxiosInstance } from '../../../mutator';
@@ -708,7 +708,7 @@ export const articleControllerToggleLike = (
 ) => {
       
       
-      return customAxiosInstance<LikePostResponseDtoResponse | ArticleControllerToggleLike201>(
+      return customAxiosInstance<LikeArticleResponseDtoResponse | ArticleControllerToggleLike201>(
       {url: `/api/v1/boards/${boardId}/articles/${articleId}/like`, method: 'POST', signal
     },
       );

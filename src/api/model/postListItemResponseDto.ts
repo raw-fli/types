@@ -11,7 +11,5 @@ export interface PostListItemResponseDto {
   id: number;
   title: string;
   author: UserResponseDto;
-  views: number;
-  commentCount: number;
   createdAt: string;
 }

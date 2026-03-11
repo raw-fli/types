@@ -5,6 +5,7 @@
  * The Rawfli API description
  * OpenAPI spec version: 1.0
  */
+import type { Article } from './article';
 import type { BoardType } from './boardType';
 import type { Post } from './post';
 
@@ -13,6 +14,7 @@ export interface Board {
   type: BoardType;
   name: string;
   description: string;
+  articles: Article[];
   posts: Post[];
   maxPostId: number;
 }
