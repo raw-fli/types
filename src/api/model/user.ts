@@ -18,6 +18,8 @@ export interface User {
   password: string;
   /** @nullable */
   profileImageKey: string | null;
+  /** @nullable */
+  bio: string | null;
   articles: Article[];
   posts: Post[];
   comments: Comment[];
