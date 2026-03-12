@@ -16,4 +16,6 @@ export interface UserInfoResponseDto {
   followerCount: number;
   followingCount: number;
   createdAt: string;
+  /** @nullable */
+  bio?: string | null;
 }
