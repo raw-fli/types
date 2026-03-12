@@ -6,4 +6,6 @@ export * from './api/endpoints/boards/boards';
 export * from './api/endpoints/posts/posts';
 export * from './api/endpoints/users/users';
 export * from './api/endpoints/me/me';
+export * from './api/endpoints/cameras/cameras';
+export * from './api/endpoints/lenses/lenses';
 export { configureApiClient } from './mutator';
