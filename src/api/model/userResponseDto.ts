@@ -10,6 +10,8 @@ export interface UserResponseDto {
   id: number;
   email: string;
   username: string;
+  /** @nullable */
+  profileImageKey: string | null;
   createdAt: string;
   password: string;
 }
