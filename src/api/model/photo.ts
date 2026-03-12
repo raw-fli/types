@@ -5,9 +5,9 @@
  * The Rawfli API description
  * OpenAPI spec version: 1.0
  */
+import type { Camera } from './camera';
 import type { Image } from './image';
-import type { PhotoCamera } from './photoCamera';
-import type { PhotoLens } from './photoLens';
+import type { Lens } from './lens';
 import type { PhotoReferencedInArticlesItem } from './photoReferencedInArticlesItem';
 import type { Post } from './post';
 import type { User } from './user';
@@ -26,10 +26,8 @@ export interface Photo {
   shutterSpeedDisplay: string | null;
   /** @nullable */
   shutterSpeedValue: number | null;
-  /** @nullable */
-  camera: PhotoCamera;
-  /** @nullable */
-  lens: PhotoLens;
+  camera: Camera | null;
+  lens: Lens | null;
   likes: User[];
   referencedInArticles: PhotoReferencedInArticlesItem[];
 }

@@ -7,7 +7,6 @@
  */
 import {
   useInfiniteQuery,
-  useMutation,
   useQuery
 } from '@tanstack/react-query';
 import type {
@@ -16,26 +15,19 @@ import type {
   DefinedUseInfiniteQueryResult,
   DefinedUseQueryResult,
   InfiniteData,
-  MutationFunction,
   QueryClient,
   QueryFunction,
   QueryKey,
   UndefinedInitialDataOptions,
   UseInfiniteQueryOptions,
   UseInfiniteQueryResult,
-  UseMutationOptions,
-  UseMutationResult,
   UseQueryOptions,
   UseQueryResult
 } from '@tanstack/react-query';
 
 import type {
   LensListResponseDtoResponse,
-  LensResponseDtoResponse,
-  LensesControllerGetLensesParams,
-  LensesControllerGetUnverifiedLensesParams,
-  LensesControllerMergeLenses201,
-  MergeEquipmentDto
+  LensesControllerGetLensesParams
 } from '../../model';
 
 import { customAxiosInstance } from '../../../mutator';
@@ -205,229 +197,3 @@ export function useLensesControllerGetLenses<TData = Awaited<ReturnType<typeof l
 
 
 
-/**
- * @summary 미검증 렌즈 목록 조회
- */
-export const lensesControllerGetUnverifiedLenses = (
-    params: LensesControllerGetUnverifiedLensesParams,
- signal?: AbortSignal
-) => {
-      
-      
-      return customAxiosInstance<LensListResponseDtoResponse>(
-      {url: `/api/v1/lenses/unverified`, method: 'GET',
-        params, signal
-    },
-      );
-    }
-  
-
-
-
-export const getLensesControllerGetUnverifiedLensesInfiniteQueryKey = (params?: LensesControllerGetUnverifiedLensesParams,) => {
-    return [
-    'infinite', `/api/v1/lenses/unverified`, ...(params ? [params] : [])
-    ] as const;
-    }
-
-export const getLensesControllerGetUnverifiedLensesQueryKey = (params?: LensesControllerGetUnverifiedLensesParams,) => {
-    return [
-    `/api/v1/lenses/unverified`, ...(params ? [params] : [])
-    ] as const;
-    }
-
-    
-export const getLensesControllerGetUnverifiedLensesInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof lensesControllerGetUnverifiedLenses>>>, TError = unknown>(params: LensesControllerGetUnverifiedLensesParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof lensesControllerGetUnverifiedLenses>>, TError, TData>>, }
-) => {
-
-const {query: queryOptions} = options ?? {};
-
-  const queryKey =  queryOptions?.queryKey ?? getLensesControllerGetUnverifiedLensesInfiniteQueryKey(params);
-
-  
-
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof lensesControllerGetUnverifiedLenses>>> = ({ signal }) => lensesControllerGetUnverifiedLenses(params, signal);
-
-      
-
-      
-
-   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof lensesControllerGetUnverifiedLenses>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
-}
-
-export type LensesControllerGetUnverifiedLensesInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof lensesControllerGetUnverifiedLenses>>>
-export type LensesControllerGetUnverifiedLensesInfiniteQueryError = unknown
-
-
-export function useLensesControllerGetUnverifiedLensesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof lensesControllerGetUnverifiedLenses>>>, TError = unknown>(
- params: LensesControllerGetUnverifiedLensesParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof lensesControllerGetUnverifiedLenses>>, TError, TData>> & Pick<
-        DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof lensesControllerGetUnverifiedLenses>>,
-          TError,
-          Awaited<ReturnType<typeof lensesControllerGetUnverifiedLenses>>
-        > , 'initialData'
-      >, }
- , queryClient?: QueryClient
-  ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useLensesControllerGetUnverifiedLensesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof lensesControllerGetUnverifiedLenses>>>, TError = unknown>(
- params: LensesControllerGetUnverifiedLensesParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof lensesControllerGetUnverifiedLenses>>, TError, TData>> & Pick<
-        UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof lensesControllerGetUnverifiedLenses>>,
-          TError,
-          Awaited<ReturnType<typeof lensesControllerGetUnverifiedLenses>>
-        > , 'initialData'
-      >, }
- , queryClient?: QueryClient
-  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useLensesControllerGetUnverifiedLensesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof lensesControllerGetUnverifiedLenses>>>, TError = unknown>(
- params: LensesControllerGetUnverifiedLensesParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof lensesControllerGetUnverifiedLenses>>, TError, TData>>, }
- , queryClient?: QueryClient
-  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-/**
- * @summary 미검증 렌즈 목록 조회
- */
-
-export function useLensesControllerGetUnverifiedLensesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof lensesControllerGetUnverifiedLenses>>>, TError = unknown>(
- params: LensesControllerGetUnverifiedLensesParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof lensesControllerGetUnverifiedLenses>>, TError, TData>>, }
- , queryClient?: QueryClient 
- ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
-
-  const queryOptions = getLensesControllerGetUnverifiedLensesInfiniteQueryOptions(params,options)
-
-  const query = useInfiniteQuery(queryOptions, queryClient) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
-
-  return { ...query, queryKey: queryOptions.queryKey };
-}
-
-
-
-
-export const getLensesControllerGetUnverifiedLensesQueryOptions = <TData = Awaited<ReturnType<typeof lensesControllerGetUnverifiedLenses>>, TError = unknown>(params: LensesControllerGetUnverifiedLensesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof lensesControllerGetUnverifiedLenses>>, TError, TData>>, }
-) => {
-
-const {query: queryOptions} = options ?? {};
-
-  const queryKey =  queryOptions?.queryKey ?? getLensesControllerGetUnverifiedLensesQueryKey(params);
-
-  
-
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof lensesControllerGetUnverifiedLenses>>> = ({ signal }) => lensesControllerGetUnverifiedLenses(params, signal);
-
-      
-
-      
-
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof lensesControllerGetUnverifiedLenses>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
-}
-
-export type LensesControllerGetUnverifiedLensesQueryResult = NonNullable<Awaited<ReturnType<typeof lensesControllerGetUnverifiedLenses>>>
-export type LensesControllerGetUnverifiedLensesQueryError = unknown
-
-
-export function useLensesControllerGetUnverifiedLenses<TData = Awaited<ReturnType<typeof lensesControllerGetUnverifiedLenses>>, TError = unknown>(
- params: LensesControllerGetUnverifiedLensesParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof lensesControllerGetUnverifiedLenses>>, TError, TData>> & Pick<
-        DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof lensesControllerGetUnverifiedLenses>>,
-          TError,
-          Awaited<ReturnType<typeof lensesControllerGetUnverifiedLenses>>
-        > , 'initialData'
-      >, }
- , queryClient?: QueryClient
-  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useLensesControllerGetUnverifiedLenses<TData = Awaited<ReturnType<typeof lensesControllerGetUnverifiedLenses>>, TError = unknown>(
- params: LensesControllerGetUnverifiedLensesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof lensesControllerGetUnverifiedLenses>>, TError, TData>> & Pick<
-        UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof lensesControllerGetUnverifiedLenses>>,
-          TError,
-          Awaited<ReturnType<typeof lensesControllerGetUnverifiedLenses>>
-        > , 'initialData'
-      >, }
- , queryClient?: QueryClient
-  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useLensesControllerGetUnverifiedLenses<TData = Awaited<ReturnType<typeof lensesControllerGetUnverifiedLenses>>, TError = unknown>(
- params: LensesControllerGetUnverifiedLensesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof lensesControllerGetUnverifiedLenses>>, TError, TData>>, }
- , queryClient?: QueryClient
-  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-/**
- * @summary 미검증 렌즈 목록 조회
- */
-
-export function useLensesControllerGetUnverifiedLenses<TData = Awaited<ReturnType<typeof lensesControllerGetUnverifiedLenses>>, TError = unknown>(
- params: LensesControllerGetUnverifiedLensesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof lensesControllerGetUnverifiedLenses>>, TError, TData>>, }
- , queryClient?: QueryClient 
- ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
-
-  const queryOptions = getLensesControllerGetUnverifiedLensesQueryOptions(params,options)
-
-  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
-
-  return { ...query, queryKey: queryOptions.queryKey };
-}
-
-
-
-
-/**
- * @summary 렌즈 병합 (관리자)
- */
-export const lensesControllerMergeLenses = (
-    mergeEquipmentDto: MergeEquipmentDto,
- signal?: AbortSignal
-) => {
-      
-      
-      return customAxiosInstance<LensResponseDtoResponse | LensesControllerMergeLenses201>(
-      {url: `/api/v1/lenses/merge`, method: 'POST',
-      headers: {'Content-Type': 'application/json', },
-      data: mergeEquipmentDto, signal
-    },
-      );
-    }
-  
-
-
-export const getLensesControllerMergeLensesMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof lensesControllerMergeLenses>>, TError,{data: MergeEquipmentDto}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof lensesControllerMergeLenses>>, TError,{data: MergeEquipmentDto}, TContext> => {
-
-const mutationKey = ['lensesControllerMergeLenses'];
-const {mutation: mutationOptions} = options ?
-      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
-      options
-      : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
-
-      
-
-
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof lensesControllerMergeLenses>>, {data: MergeEquipmentDto}> = (props) => {
-          const {data} = props ?? {};
-
-          return  lensesControllerMergeLenses(data,)
-        }
-
-
-
-        
-
-
-  return  { mutationFn, ...mutationOptions }}
-
-    export type LensesControllerMergeLensesMutationResult = NonNullable<Awaited<ReturnType<typeof lensesControllerMergeLenses>>>
-    export type LensesControllerMergeLensesMutationBody = MergeEquipmentDto
-    export type LensesControllerMergeLensesMutationError = unknown
-
-    /**
- * @summary 렌즈 병합 (관리자)
- */
-export const useLensesControllerMergeLenses = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof lensesControllerMergeLenses>>, TError,{data: MergeEquipmentDto}, TContext>, }
- , queryClient?: QueryClient): UseMutationResult<
-        Awaited<ReturnType<typeof lensesControllerMergeLenses>>,
-        TError,
-        {data: MergeEquipmentDto},
-        TContext
-      > => {
-      return useMutation(getLensesControllerMergeLensesMutationOptions(options), queryClient);
-    }
-    

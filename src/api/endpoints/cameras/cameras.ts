@@ -7,7 +7,6 @@
  */
 import {
   useInfiniteQuery,
-  useMutation,
   useQuery
 } from '@tanstack/react-query';
 import type {
@@ -16,26 +15,19 @@ import type {
   DefinedUseInfiniteQueryResult,
   DefinedUseQueryResult,
   InfiniteData,
-  MutationFunction,
   QueryClient,
   QueryFunction,
   QueryKey,
   UndefinedInitialDataOptions,
   UseInfiniteQueryOptions,
   UseInfiniteQueryResult,
-  UseMutationOptions,
-  UseMutationResult,
   UseQueryOptions,
   UseQueryResult
 } from '@tanstack/react-query';
 
 import type {
   CameraListResponseDtoResponse,
-  CameraResponseDtoResponse,
-  CamerasControllerGetCamerasParams,
-  CamerasControllerGetUnverifiedCamerasParams,
-  CamerasControllerMergeCameras201,
-  MergeEquipmentDto
+  CamerasControllerGetCamerasParams
 } from '../../model';
 
 import { customAxiosInstance } from '../../../mutator';
@@ -205,229 +197,3 @@ export function useCamerasControllerGetCameras<TData = Awaited<ReturnType<typeof
 
 
 
-/**
- * @summary 미검증 카메라 목록 조회
- */
-export const camerasControllerGetUnverifiedCameras = (
-    params: CamerasControllerGetUnverifiedCamerasParams,
- signal?: AbortSignal
-) => {
-      
-      
-      return customAxiosInstance<CameraListResponseDtoResponse>(
-      {url: `/api/v1/cameras/unverified`, method: 'GET',
-        params, signal
-    },
-      );
-    }
-  
-
-
-
-export const getCamerasControllerGetUnverifiedCamerasInfiniteQueryKey = (params?: CamerasControllerGetUnverifiedCamerasParams,) => {
-    return [
-    'infinite', `/api/v1/cameras/unverified`, ...(params ? [params] : [])
-    ] as const;
-    }
-
-export const getCamerasControllerGetUnverifiedCamerasQueryKey = (params?: CamerasControllerGetUnverifiedCamerasParams,) => {
-    return [
-    `/api/v1/cameras/unverified`, ...(params ? [params] : [])
-    ] as const;
-    }
-
-    
-export const getCamerasControllerGetUnverifiedCamerasInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof camerasControllerGetUnverifiedCameras>>>, TError = unknown>(params: CamerasControllerGetUnverifiedCamerasParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof camerasControllerGetUnverifiedCameras>>, TError, TData>>, }
-) => {
-
-const {query: queryOptions} = options ?? {};
-
-  const queryKey =  queryOptions?.queryKey ?? getCamerasControllerGetUnverifiedCamerasInfiniteQueryKey(params);
-
-  
-
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof camerasControllerGetUnverifiedCameras>>> = ({ signal }) => camerasControllerGetUnverifiedCameras(params, signal);
-
-      
-
-      
-
-   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof camerasControllerGetUnverifiedCameras>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
-}
-
-export type CamerasControllerGetUnverifiedCamerasInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof camerasControllerGetUnverifiedCameras>>>
-export type CamerasControllerGetUnverifiedCamerasInfiniteQueryError = unknown
-
-
-export function useCamerasControllerGetUnverifiedCamerasInfinite<TData = InfiniteData<Awaited<ReturnType<typeof camerasControllerGetUnverifiedCameras>>>, TError = unknown>(
- params: CamerasControllerGetUnverifiedCamerasParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof camerasControllerGetUnverifiedCameras>>, TError, TData>> & Pick<
-        DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof camerasControllerGetUnverifiedCameras>>,
-          TError,
-          Awaited<ReturnType<typeof camerasControllerGetUnverifiedCameras>>
-        > , 'initialData'
-      >, }
- , queryClient?: QueryClient
-  ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useCamerasControllerGetUnverifiedCamerasInfinite<TData = InfiniteData<Awaited<ReturnType<typeof camerasControllerGetUnverifiedCameras>>>, TError = unknown>(
- params: CamerasControllerGetUnverifiedCamerasParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof camerasControllerGetUnverifiedCameras>>, TError, TData>> & Pick<
-        UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof camerasControllerGetUnverifiedCameras>>,
-          TError,
-          Awaited<ReturnType<typeof camerasControllerGetUnverifiedCameras>>
-        > , 'initialData'
-      >, }
- , queryClient?: QueryClient
-  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useCamerasControllerGetUnverifiedCamerasInfinite<TData = InfiniteData<Awaited<ReturnType<typeof camerasControllerGetUnverifiedCameras>>>, TError = unknown>(
- params: CamerasControllerGetUnverifiedCamerasParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof camerasControllerGetUnverifiedCameras>>, TError, TData>>, }
- , queryClient?: QueryClient
-  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-/**
- * @summary 미검증 카메라 목록 조회
- */
-
-export function useCamerasControllerGetUnverifiedCamerasInfinite<TData = InfiniteData<Awaited<ReturnType<typeof camerasControllerGetUnverifiedCameras>>>, TError = unknown>(
- params: CamerasControllerGetUnverifiedCamerasParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof camerasControllerGetUnverifiedCameras>>, TError, TData>>, }
- , queryClient?: QueryClient 
- ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
-
-  const queryOptions = getCamerasControllerGetUnverifiedCamerasInfiniteQueryOptions(params,options)
-
-  const query = useInfiniteQuery(queryOptions, queryClient) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
-
-  return { ...query, queryKey: queryOptions.queryKey };
-}
-
-
-
-
-export const getCamerasControllerGetUnverifiedCamerasQueryOptions = <TData = Awaited<ReturnType<typeof camerasControllerGetUnverifiedCameras>>, TError = unknown>(params: CamerasControllerGetUnverifiedCamerasParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof camerasControllerGetUnverifiedCameras>>, TError, TData>>, }
-) => {
-
-const {query: queryOptions} = options ?? {};
-
-  const queryKey =  queryOptions?.queryKey ?? getCamerasControllerGetUnverifiedCamerasQueryKey(params);
-
-  
-
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof camerasControllerGetUnverifiedCameras>>> = ({ signal }) => camerasControllerGetUnverifiedCameras(params, signal);
-
-      
-
-      
-
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof camerasControllerGetUnverifiedCameras>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
-}
-
-export type CamerasControllerGetUnverifiedCamerasQueryResult = NonNullable<Awaited<ReturnType<typeof camerasControllerGetUnverifiedCameras>>>
-export type CamerasControllerGetUnverifiedCamerasQueryError = unknown
-
-
-export function useCamerasControllerGetUnverifiedCameras<TData = Awaited<ReturnType<typeof camerasControllerGetUnverifiedCameras>>, TError = unknown>(
- params: CamerasControllerGetUnverifiedCamerasParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof camerasControllerGetUnverifiedCameras>>, TError, TData>> & Pick<
-        DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof camerasControllerGetUnverifiedCameras>>,
-          TError,
-          Awaited<ReturnType<typeof camerasControllerGetUnverifiedCameras>>
-        > , 'initialData'
-      >, }
- , queryClient?: QueryClient
-  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useCamerasControllerGetUnverifiedCameras<TData = Awaited<ReturnType<typeof camerasControllerGetUnverifiedCameras>>, TError = unknown>(
- params: CamerasControllerGetUnverifiedCamerasParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof camerasControllerGetUnverifiedCameras>>, TError, TData>> & Pick<
-        UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof camerasControllerGetUnverifiedCameras>>,
-          TError,
-          Awaited<ReturnType<typeof camerasControllerGetUnverifiedCameras>>
-        > , 'initialData'
-      >, }
- , queryClient?: QueryClient
-  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useCamerasControllerGetUnverifiedCameras<TData = Awaited<ReturnType<typeof camerasControllerGetUnverifiedCameras>>, TError = unknown>(
- params: CamerasControllerGetUnverifiedCamerasParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof camerasControllerGetUnverifiedCameras>>, TError, TData>>, }
- , queryClient?: QueryClient
-  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-/**
- * @summary 미검증 카메라 목록 조회
- */
-
-export function useCamerasControllerGetUnverifiedCameras<TData = Awaited<ReturnType<typeof camerasControllerGetUnverifiedCameras>>, TError = unknown>(
- params: CamerasControllerGetUnverifiedCamerasParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof camerasControllerGetUnverifiedCameras>>, TError, TData>>, }
- , queryClient?: QueryClient 
- ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
-
-  const queryOptions = getCamerasControllerGetUnverifiedCamerasQueryOptions(params,options)
-
-  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
-
-  return { ...query, queryKey: queryOptions.queryKey };
-}
-
-
-
-
-/**
- * @summary 카메라 병합 (관리자)
- */
-export const camerasControllerMergeCameras = (
-    mergeEquipmentDto: MergeEquipmentDto,
- signal?: AbortSignal
-) => {
-      
-      
-      return customAxiosInstance<CameraResponseDtoResponse | CamerasControllerMergeCameras201>(
-      {url: `/api/v1/cameras/merge`, method: 'POST',
-      headers: {'Content-Type': 'application/json', },
-      data: mergeEquipmentDto, signal
-    },
-      );
-    }
-  
-
-
-export const getCamerasControllerMergeCamerasMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof camerasControllerMergeCameras>>, TError,{data: MergeEquipmentDto}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof camerasControllerMergeCameras>>, TError,{data: MergeEquipmentDto}, TContext> => {
-
-const mutationKey = ['camerasControllerMergeCameras'];
-const {mutation: mutationOptions} = options ?
-      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
-      options
-      : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
-
-      
-
-
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof camerasControllerMergeCameras>>, {data: MergeEquipmentDto}> = (props) => {
-          const {data} = props ?? {};
-
-          return  camerasControllerMergeCameras(data,)
-        }
-
-
-
-        
-
-
-  return  { mutationFn, ...mutationOptions }}
-
-    export type CamerasControllerMergeCamerasMutationResult = NonNullable<Awaited<ReturnType<typeof camerasControllerMergeCameras>>>
-    export type CamerasControllerMergeCamerasMutationBody = MergeEquipmentDto
-    export type CamerasControllerMergeCamerasMutationError = unknown
-
-    /**
- * @summary 카메라 병합 (관리자)
- */
-export const useCamerasControllerMergeCameras = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof camerasControllerMergeCameras>>, TError,{data: MergeEquipmentDto}, TContext>, }
- , queryClient?: QueryClient): UseMutationResult<
-        Awaited<ReturnType<typeof camerasControllerMergeCameras>>,
-        TError,
-        {data: MergeEquipmentDto},
-        TContext
-      > => {
-      return useMutation(getCamerasControllerMergeCamerasMutationOptions(options), queryClient);
-    }
-    
