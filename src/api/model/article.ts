@@ -19,6 +19,8 @@ export interface Article {
   likes: User[];
   views: number;
   comments: Comment[];
+  commentCount: number;
+  likeCount: number;
   referencedPhotos: Photo[];
   attachedImages: Image[];
 }
