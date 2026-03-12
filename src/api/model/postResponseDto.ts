@@ -5,9 +5,11 @@
  * The Rawfli API description
  * OpenAPI spec version: 1.0
  */
+import type { PhotoResponseDto } from './photoResponseDto';
 import type { UserResponseDto } from './userResponseDto';
 
 export interface PostResponseDto {
+  photos?: PhotoResponseDto[];
   id: number;
   title: string;
   content: string;

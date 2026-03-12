@@ -13,7 +13,7 @@ export interface Image {
   id: string;
   key: string;
   /** @nullable */
-  exifData: ImageExifData;
+  exifData?: ImageExifData;
   uploader: User;
   photos: Photo[];
 }
