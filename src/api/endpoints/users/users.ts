@@ -26,7 +26,7 @@ import type {
 } from '@tanstack/react-query';
 
 import type {
-  UserInfoResponseDto
+  UserInfoResponseDtoResponse
 } from '../../model';
 
 import { customAxiosInstance } from '../../../mutator';
@@ -43,7 +43,7 @@ export const usersControllerGetUser = (
 ) => {
       
       
-      return customAxiosInstance<UserInfoResponseDto>(
+      return customAxiosInstance<UserInfoResponseDtoResponse>(
       {url: `/api/v1/users/${userId}`, method: 'GET', signal
     },
       );

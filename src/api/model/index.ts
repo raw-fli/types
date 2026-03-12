@@ -82,5 +82,6 @@ export * from './tokenDto';
 export * from './tokenDtoResponse';
 export * from './user';
 export * from './userInfoResponseDto';
+export * from './userInfoResponseDtoResponse';
 export * from './userResponseDto';
 export * from './userResponseDtoResponse';
