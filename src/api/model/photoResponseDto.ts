@@ -18,6 +18,8 @@ export interface PhotoResponseDto {
   shutterSpeedDisplay?: string | null;
   /** @nullable */
   shutterSpeedValue?: number | null;
+  /** @nullable */
+  focalLength?: number | null;
   camera?: PhotoCameraResponseDto | null;
   lens?: PhotoLensResponseDto | null;
   id: string;

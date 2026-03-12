@@ -26,6 +26,8 @@ export interface Photo {
   shutterSpeedDisplay: string | null;
   /** @nullable */
   shutterSpeedValue: number | null;
+  /** @nullable */
+  focalLength: number | null;
   camera: Camera | null;
   lens: Lens | null;
   likes: User[];
