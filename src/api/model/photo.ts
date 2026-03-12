@@ -6,6 +6,8 @@
  * OpenAPI spec version: 1.0
  */
 import type { Image } from './image';
+import type { PhotoCamera } from './photoCamera';
+import type { PhotoLens } from './photoLens';
 import type { PhotoReferencedInArticlesItem } from './photoReferencedInArticlesItem';
 import type { Post } from './post';
 import type { User } from './user';
@@ -16,6 +18,18 @@ export interface Photo {
   post: Post;
   author: User;
   description?: string;
+  /** @nullable */
+  iso: number | null;
+  /** @nullable */
+  aperture: number | null;
+  /** @nullable */
+  shutterSpeedDisplay: string | null;
+  /** @nullable */
+  shutterSpeedValue: number | null;
+  /** @nullable */
+  camera: PhotoCamera;
+  /** @nullable */
+  lens: PhotoLens;
   likes: User[];
   referencedInArticles: PhotoReferencedInArticlesItem[];
 }

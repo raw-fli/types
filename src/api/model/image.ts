@@ -5,12 +5,15 @@
  * The Rawfli API description
  * OpenAPI spec version: 1.0
  */
+import type { ImageExifData } from './imageExifData';
 import type { Photo } from './photo';
 import type { User } from './user';
 
 export interface Image {
   id: string;
   key: string;
+  /** @nullable */
+  exifData: ImageExifData;
   uploader: User;
   photos: Photo[];
 }
