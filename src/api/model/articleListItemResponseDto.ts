@@ -17,5 +17,7 @@ export interface ArticleListItemResponseDto {
   likesCount: number;
   /** @nullable */
   thumbnailKey: string | null;
+  boardId: number;
+  boardName: string;
   createdAt: string;
 }
