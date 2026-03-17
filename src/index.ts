@@ -8,4 +8,5 @@ export * from './api/endpoints/users/users';
 export * from './api/endpoints/me/me';
 export * from './api/endpoints/cameras/cameras';
 export * from './api/endpoints/lenses/lenses';
+export * from './api/endpoints/admin/admin';
 export { configureApiClient } from './mutator';
