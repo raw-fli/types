@@ -7,6 +7,8 @@
  */
 
 export interface MergeEquipmentDto {
+  /** 병합 후 남길 target 장비 ID */
   targetId: number;
+  /** target으로 병합할 source 장비 ID 목록 */
   sourceIds: number[];
 }

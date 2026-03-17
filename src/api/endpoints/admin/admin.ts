@@ -30,10 +30,16 @@ import type {
 } from '@tanstack/react-query';
 
 import type {
+  AdminControllerGetDeletedCommentsParams,
+  AdminControllerGetDeletedPostsParams,
+  AdminControllerGetImagesParams,
   AdminControllerGetUnverifiedCamerasParams,
   AdminControllerGetUnverifiedLensesParams,
   AdminControllerMergeCameras201,
   AdminControllerMergeLenses201,
+  AdminDeletedCommentListResponseDtoResponse,
+  AdminDeletedPostListResponseDtoResponse,
+  AdminImageListResponseDtoResponse,
   AdminInfoDtoResponse,
   AdminTokenDtoResponse,
   CameraListResponseDtoResponse,
@@ -626,4 +632,489 @@ export const useAdminControllerMergeLenses = <TError = unknown,
       > => {
       return useMutation(getAdminControllerMergeLensesMutationOptions(options), queryClient);
     }
+    /**
+ * @summary 업로드 이미지 목록 조회
+ */
+export const adminControllerGetImages = (
+    params: AdminControllerGetImagesParams,
+ signal?: AbortSignal
+) => {
+      
+      
+      return customAxiosInstance<AdminImageListResponseDtoResponse>(
+      {url: `/api/v1/admin/images`, method: 'GET',
+        params, signal
+    },
+      );
+    }
+  
+
+
+
+export const getAdminControllerGetImagesInfiniteQueryKey = (params?: AdminControllerGetImagesParams,) => {
+    return [
+    'infinite', `/api/v1/admin/images`, ...(params ? [params] : [])
+    ] as const;
+    }
+
+export const getAdminControllerGetImagesQueryKey = (params?: AdminControllerGetImagesParams,) => {
+    return [
+    `/api/v1/admin/images`, ...(params ? [params] : [])
+    ] as const;
+    }
+
     
+export const getAdminControllerGetImagesInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof adminControllerGetImages>>>, TError = unknown>(params: AdminControllerGetImagesParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof adminControllerGetImages>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getAdminControllerGetImagesInfiniteQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof adminControllerGetImages>>> = ({ signal }) => adminControllerGetImages(params, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof adminControllerGetImages>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type AdminControllerGetImagesInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof adminControllerGetImages>>>
+export type AdminControllerGetImagesInfiniteQueryError = unknown
+
+
+export function useAdminControllerGetImagesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof adminControllerGetImages>>>, TError = unknown>(
+ params: AdminControllerGetImagesParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof adminControllerGetImages>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof adminControllerGetImages>>,
+          TError,
+          Awaited<ReturnType<typeof adminControllerGetImages>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useAdminControllerGetImagesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof adminControllerGetImages>>>, TError = unknown>(
+ params: AdminControllerGetImagesParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof adminControllerGetImages>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof adminControllerGetImages>>,
+          TError,
+          Awaited<ReturnType<typeof adminControllerGetImages>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useAdminControllerGetImagesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof adminControllerGetImages>>>, TError = unknown>(
+ params: AdminControllerGetImagesParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof adminControllerGetImages>>, TError, TData>>, }
+ , queryClient?: QueryClient
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary 업로드 이미지 목록 조회
+ */
+
+export function useAdminControllerGetImagesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof adminControllerGetImages>>>, TError = unknown>(
+ params: AdminControllerGetImagesParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof adminControllerGetImages>>, TError, TData>>, }
+ , queryClient?: QueryClient 
+ ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getAdminControllerGetImagesInfiniteQueryOptions(params,options)
+
+  const query = useInfiniteQuery(queryOptions, queryClient) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+
+
+
+export const getAdminControllerGetImagesQueryOptions = <TData = Awaited<ReturnType<typeof adminControllerGetImages>>, TError = unknown>(params: AdminControllerGetImagesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof adminControllerGetImages>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getAdminControllerGetImagesQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof adminControllerGetImages>>> = ({ signal }) => adminControllerGetImages(params, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof adminControllerGetImages>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type AdminControllerGetImagesQueryResult = NonNullable<Awaited<ReturnType<typeof adminControllerGetImages>>>
+export type AdminControllerGetImagesQueryError = unknown
+
+
+export function useAdminControllerGetImages<TData = Awaited<ReturnType<typeof adminControllerGetImages>>, TError = unknown>(
+ params: AdminControllerGetImagesParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof adminControllerGetImages>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof adminControllerGetImages>>,
+          TError,
+          Awaited<ReturnType<typeof adminControllerGetImages>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useAdminControllerGetImages<TData = Awaited<ReturnType<typeof adminControllerGetImages>>, TError = unknown>(
+ params: AdminControllerGetImagesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof adminControllerGetImages>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof adminControllerGetImages>>,
+          TError,
+          Awaited<ReturnType<typeof adminControllerGetImages>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useAdminControllerGetImages<TData = Awaited<ReturnType<typeof adminControllerGetImages>>, TError = unknown>(
+ params: AdminControllerGetImagesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof adminControllerGetImages>>, TError, TData>>, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary 업로드 이미지 목록 조회
+ */
+
+export function useAdminControllerGetImages<TData = Awaited<ReturnType<typeof adminControllerGetImages>>, TError = unknown>(
+ params: AdminControllerGetImagesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof adminControllerGetImages>>, TError, TData>>, }
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getAdminControllerGetImagesQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+
+
+
+/**
+ * @summary 삭제된 게시글 목록 조회
+ */
+export const adminControllerGetDeletedPosts = (
+    params: AdminControllerGetDeletedPostsParams,
+ signal?: AbortSignal
+) => {
+      
+      
+      return customAxiosInstance<AdminDeletedPostListResponseDtoResponse>(
+      {url: `/api/v1/admin/deleted-posts`, method: 'GET',
+        params, signal
+    },
+      );
+    }
+  
+
+
+
+export const getAdminControllerGetDeletedPostsInfiniteQueryKey = (params?: AdminControllerGetDeletedPostsParams,) => {
+    return [
+    'infinite', `/api/v1/admin/deleted-posts`, ...(params ? [params] : [])
+    ] as const;
+    }
+
+export const getAdminControllerGetDeletedPostsQueryKey = (params?: AdminControllerGetDeletedPostsParams,) => {
+    return [
+    `/api/v1/admin/deleted-posts`, ...(params ? [params] : [])
+    ] as const;
+    }
+
+    
+export const getAdminControllerGetDeletedPostsInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof adminControllerGetDeletedPosts>>>, TError = unknown>(params: AdminControllerGetDeletedPostsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof adminControllerGetDeletedPosts>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getAdminControllerGetDeletedPostsInfiniteQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof adminControllerGetDeletedPosts>>> = ({ signal }) => adminControllerGetDeletedPosts(params, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof adminControllerGetDeletedPosts>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type AdminControllerGetDeletedPostsInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof adminControllerGetDeletedPosts>>>
+export type AdminControllerGetDeletedPostsInfiniteQueryError = unknown
+
+
+export function useAdminControllerGetDeletedPostsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof adminControllerGetDeletedPosts>>>, TError = unknown>(
+ params: AdminControllerGetDeletedPostsParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof adminControllerGetDeletedPosts>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof adminControllerGetDeletedPosts>>,
+          TError,
+          Awaited<ReturnType<typeof adminControllerGetDeletedPosts>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useAdminControllerGetDeletedPostsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof adminControllerGetDeletedPosts>>>, TError = unknown>(
+ params: AdminControllerGetDeletedPostsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof adminControllerGetDeletedPosts>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof adminControllerGetDeletedPosts>>,
+          TError,
+          Awaited<ReturnType<typeof adminControllerGetDeletedPosts>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useAdminControllerGetDeletedPostsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof adminControllerGetDeletedPosts>>>, TError = unknown>(
+ params: AdminControllerGetDeletedPostsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof adminControllerGetDeletedPosts>>, TError, TData>>, }
+ , queryClient?: QueryClient
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary 삭제된 게시글 목록 조회
+ */
+
+export function useAdminControllerGetDeletedPostsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof adminControllerGetDeletedPosts>>>, TError = unknown>(
+ params: AdminControllerGetDeletedPostsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof adminControllerGetDeletedPosts>>, TError, TData>>, }
+ , queryClient?: QueryClient 
+ ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getAdminControllerGetDeletedPostsInfiniteQueryOptions(params,options)
+
+  const query = useInfiniteQuery(queryOptions, queryClient) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+
+
+
+export const getAdminControllerGetDeletedPostsQueryOptions = <TData = Awaited<ReturnType<typeof adminControllerGetDeletedPosts>>, TError = unknown>(params: AdminControllerGetDeletedPostsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof adminControllerGetDeletedPosts>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getAdminControllerGetDeletedPostsQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof adminControllerGetDeletedPosts>>> = ({ signal }) => adminControllerGetDeletedPosts(params, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof adminControllerGetDeletedPosts>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type AdminControllerGetDeletedPostsQueryResult = NonNullable<Awaited<ReturnType<typeof adminControllerGetDeletedPosts>>>
+export type AdminControllerGetDeletedPostsQueryError = unknown
+
+
+export function useAdminControllerGetDeletedPosts<TData = Awaited<ReturnType<typeof adminControllerGetDeletedPosts>>, TError = unknown>(
+ params: AdminControllerGetDeletedPostsParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof adminControllerGetDeletedPosts>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof adminControllerGetDeletedPosts>>,
+          TError,
+          Awaited<ReturnType<typeof adminControllerGetDeletedPosts>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useAdminControllerGetDeletedPosts<TData = Awaited<ReturnType<typeof adminControllerGetDeletedPosts>>, TError = unknown>(
+ params: AdminControllerGetDeletedPostsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof adminControllerGetDeletedPosts>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof adminControllerGetDeletedPosts>>,
+          TError,
+          Awaited<ReturnType<typeof adminControllerGetDeletedPosts>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useAdminControllerGetDeletedPosts<TData = Awaited<ReturnType<typeof adminControllerGetDeletedPosts>>, TError = unknown>(
+ params: AdminControllerGetDeletedPostsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof adminControllerGetDeletedPosts>>, TError, TData>>, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary 삭제된 게시글 목록 조회
+ */
+
+export function useAdminControllerGetDeletedPosts<TData = Awaited<ReturnType<typeof adminControllerGetDeletedPosts>>, TError = unknown>(
+ params: AdminControllerGetDeletedPostsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof adminControllerGetDeletedPosts>>, TError, TData>>, }
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getAdminControllerGetDeletedPostsQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+
+
+
+/**
+ * @summary 삭제된 댓글 목록 조회
+ */
+export const adminControllerGetDeletedComments = (
+    params: AdminControllerGetDeletedCommentsParams,
+ signal?: AbortSignal
+) => {
+      
+      
+      return customAxiosInstance<AdminDeletedCommentListResponseDtoResponse>(
+      {url: `/api/v1/admin/deleted-comments`, method: 'GET',
+        params, signal
+    },
+      );
+    }
+  
+
+
+
+export const getAdminControllerGetDeletedCommentsInfiniteQueryKey = (params?: AdminControllerGetDeletedCommentsParams,) => {
+    return [
+    'infinite', `/api/v1/admin/deleted-comments`, ...(params ? [params] : [])
+    ] as const;
+    }
+
+export const getAdminControllerGetDeletedCommentsQueryKey = (params?: AdminControllerGetDeletedCommentsParams,) => {
+    return [
+    `/api/v1/admin/deleted-comments`, ...(params ? [params] : [])
+    ] as const;
+    }
+
+    
+export const getAdminControllerGetDeletedCommentsInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof adminControllerGetDeletedComments>>>, TError = unknown>(params: AdminControllerGetDeletedCommentsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof adminControllerGetDeletedComments>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getAdminControllerGetDeletedCommentsInfiniteQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof adminControllerGetDeletedComments>>> = ({ signal }) => adminControllerGetDeletedComments(params, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof adminControllerGetDeletedComments>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type AdminControllerGetDeletedCommentsInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof adminControllerGetDeletedComments>>>
+export type AdminControllerGetDeletedCommentsInfiniteQueryError = unknown
+
+
+export function useAdminControllerGetDeletedCommentsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof adminControllerGetDeletedComments>>>, TError = unknown>(
+ params: AdminControllerGetDeletedCommentsParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof adminControllerGetDeletedComments>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof adminControllerGetDeletedComments>>,
+          TError,
+          Awaited<ReturnType<typeof adminControllerGetDeletedComments>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useAdminControllerGetDeletedCommentsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof adminControllerGetDeletedComments>>>, TError = unknown>(
+ params: AdminControllerGetDeletedCommentsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof adminControllerGetDeletedComments>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof adminControllerGetDeletedComments>>,
+          TError,
+          Awaited<ReturnType<typeof adminControllerGetDeletedComments>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useAdminControllerGetDeletedCommentsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof adminControllerGetDeletedComments>>>, TError = unknown>(
+ params: AdminControllerGetDeletedCommentsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof adminControllerGetDeletedComments>>, TError, TData>>, }
+ , queryClient?: QueryClient
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary 삭제된 댓글 목록 조회
+ */
+
+export function useAdminControllerGetDeletedCommentsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof adminControllerGetDeletedComments>>>, TError = unknown>(
+ params: AdminControllerGetDeletedCommentsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof adminControllerGetDeletedComments>>, TError, TData>>, }
+ , queryClient?: QueryClient 
+ ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getAdminControllerGetDeletedCommentsInfiniteQueryOptions(params,options)
+
+  const query = useInfiniteQuery(queryOptions, queryClient) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+
+
+
+export const getAdminControllerGetDeletedCommentsQueryOptions = <TData = Awaited<ReturnType<typeof adminControllerGetDeletedComments>>, TError = unknown>(params: AdminControllerGetDeletedCommentsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof adminControllerGetDeletedComments>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getAdminControllerGetDeletedCommentsQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof adminControllerGetDeletedComments>>> = ({ signal }) => adminControllerGetDeletedComments(params, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof adminControllerGetDeletedComments>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type AdminControllerGetDeletedCommentsQueryResult = NonNullable<Awaited<ReturnType<typeof adminControllerGetDeletedComments>>>
+export type AdminControllerGetDeletedCommentsQueryError = unknown
+
+
+export function useAdminControllerGetDeletedComments<TData = Awaited<ReturnType<typeof adminControllerGetDeletedComments>>, TError = unknown>(
+ params: AdminControllerGetDeletedCommentsParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof adminControllerGetDeletedComments>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof adminControllerGetDeletedComments>>,
+          TError,
+          Awaited<ReturnType<typeof adminControllerGetDeletedComments>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useAdminControllerGetDeletedComments<TData = Awaited<ReturnType<typeof adminControllerGetDeletedComments>>, TError = unknown>(
+ params: AdminControllerGetDeletedCommentsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof adminControllerGetDeletedComments>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof adminControllerGetDeletedComments>>,
+          TError,
+          Awaited<ReturnType<typeof adminControllerGetDeletedComments>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useAdminControllerGetDeletedComments<TData = Awaited<ReturnType<typeof adminControllerGetDeletedComments>>, TError = unknown>(
+ params: AdminControllerGetDeletedCommentsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof adminControllerGetDeletedComments>>, TError, TData>>, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary 삭제된 댓글 목록 조회
+ */
+
+export function useAdminControllerGetDeletedComments<TData = Awaited<ReturnType<typeof adminControllerGetDeletedComments>>, TError = unknown>(
+ params: AdminControllerGetDeletedCommentsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof adminControllerGetDeletedComments>>, TError, TData>>, }
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getAdminControllerGetDeletedCommentsQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+
+
+

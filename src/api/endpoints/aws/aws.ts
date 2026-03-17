@@ -6,189 +6,22 @@
  * OpenAPI spec version: 1.0
  */
 import {
-  useInfiniteQuery,
-  useMutation,
-  useQuery
+  useMutation
 } from '@tanstack/react-query';
 import type {
-  DataTag,
-  DefinedInitialDataOptions,
-  DefinedUseInfiniteQueryResult,
-  DefinedUseQueryResult,
-  InfiniteData,
   MutationFunction,
   QueryClient,
-  QueryFunction,
-  QueryKey,
-  UndefinedInitialDataOptions,
-  UseInfiniteQueryOptions,
-  UseInfiniteQueryResult,
   UseMutationOptions,
-  UseMutationResult,
-  UseQueryOptions,
-  UseQueryResult
+  UseMutationResult
 } from '@tanstack/react-query';
 
 import type {
-  AwsControllerGetImages200,
   AwsControllerUploadFile201,
   AwsControllerUploadFileBody,
   Image
 } from '../../model';
 
 import { customAxiosInstance } from '../../../mutator';
-
-
-
-
-export const awsControllerGetImages = (
-    
- signal?: AbortSignal
-) => {
-      
-      
-      return customAxiosInstance<AwsControllerGetImages200>(
-      {url: `/api/v1/aws/images`, method: 'GET', signal
-    },
-      );
-    }
-  
-
-
-
-export const getAwsControllerGetImagesInfiniteQueryKey = () => {
-    return [
-    'infinite', `/api/v1/aws/images`
-    ] as const;
-    }
-
-export const getAwsControllerGetImagesQueryKey = () => {
-    return [
-    `/api/v1/aws/images`
-    ] as const;
-    }
-
-    
-export const getAwsControllerGetImagesInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof awsControllerGetImages>>>, TError = unknown>( options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof awsControllerGetImages>>, TError, TData>>, }
-) => {
-
-const {query: queryOptions} = options ?? {};
-
-  const queryKey =  queryOptions?.queryKey ?? getAwsControllerGetImagesInfiniteQueryKey();
-
-  
-
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof awsControllerGetImages>>> = ({ signal }) => awsControllerGetImages(signal);
-
-      
-
-      
-
-   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof awsControllerGetImages>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
-}
-
-export type AwsControllerGetImagesInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof awsControllerGetImages>>>
-export type AwsControllerGetImagesInfiniteQueryError = unknown
-
-
-export function useAwsControllerGetImagesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof awsControllerGetImages>>>, TError = unknown>(
-  options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof awsControllerGetImages>>, TError, TData>> & Pick<
-        DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof awsControllerGetImages>>,
-          TError,
-          Awaited<ReturnType<typeof awsControllerGetImages>>
-        > , 'initialData'
-      >, }
- , queryClient?: QueryClient
-  ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useAwsControllerGetImagesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof awsControllerGetImages>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof awsControllerGetImages>>, TError, TData>> & Pick<
-        UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof awsControllerGetImages>>,
-          TError,
-          Awaited<ReturnType<typeof awsControllerGetImages>>
-        > , 'initialData'
-      >, }
- , queryClient?: QueryClient
-  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useAwsControllerGetImagesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof awsControllerGetImages>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof awsControllerGetImages>>, TError, TData>>, }
- , queryClient?: QueryClient
-  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-
-export function useAwsControllerGetImagesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof awsControllerGetImages>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof awsControllerGetImages>>, TError, TData>>, }
- , queryClient?: QueryClient 
- ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
-
-  const queryOptions = getAwsControllerGetImagesInfiniteQueryOptions(options)
-
-  const query = useInfiniteQuery(queryOptions, queryClient) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
-
-  return { ...query, queryKey: queryOptions.queryKey };
-}
-
-
-
-
-export const getAwsControllerGetImagesQueryOptions = <TData = Awaited<ReturnType<typeof awsControllerGetImages>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof awsControllerGetImages>>, TError, TData>>, }
-) => {
-
-const {query: queryOptions} = options ?? {};
-
-  const queryKey =  queryOptions?.queryKey ?? getAwsControllerGetImagesQueryKey();
-
-  
-
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof awsControllerGetImages>>> = ({ signal }) => awsControllerGetImages(signal);
-
-      
-
-      
-
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof awsControllerGetImages>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
-}
-
-export type AwsControllerGetImagesQueryResult = NonNullable<Awaited<ReturnType<typeof awsControllerGetImages>>>
-export type AwsControllerGetImagesQueryError = unknown
-
-
-export function useAwsControllerGetImages<TData = Awaited<ReturnType<typeof awsControllerGetImages>>, TError = unknown>(
-  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof awsControllerGetImages>>, TError, TData>> & Pick<
-        DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof awsControllerGetImages>>,
-          TError,
-          Awaited<ReturnType<typeof awsControllerGetImages>>
-        > , 'initialData'
-      >, }
- , queryClient?: QueryClient
-  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useAwsControllerGetImages<TData = Awaited<ReturnType<typeof awsControllerGetImages>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof awsControllerGetImages>>, TError, TData>> & Pick<
-        UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof awsControllerGetImages>>,
-          TError,
-          Awaited<ReturnType<typeof awsControllerGetImages>>
-        > , 'initialData'
-      >, }
- , queryClient?: QueryClient
-  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useAwsControllerGetImages<TData = Awaited<ReturnType<typeof awsControllerGetImages>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof awsControllerGetImages>>, TError, TData>>, }
- , queryClient?: QueryClient
-  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-
-export function useAwsControllerGetImages<TData = Awaited<ReturnType<typeof awsControllerGetImages>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof awsControllerGetImages>>, TError, TData>>, }
- , queryClient?: QueryClient 
- ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
-
-  const queryOptions = getAwsControllerGetImagesQueryOptions(options)
-
-  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
-
-  return { ...query, queryKey: queryOptions.queryKey };
-}
 
 
 
