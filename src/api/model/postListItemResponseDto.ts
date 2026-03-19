@@ -12,4 +12,5 @@ export interface PostListItemResponseDto {
   title: string;
   author: UserResponseDto;
   createdAt: string;
+  photoCount: number;
 }
