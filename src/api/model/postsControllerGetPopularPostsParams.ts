@@ -6,7 +6,7 @@
  * OpenAPI spec version: 1.0
  */
 
-export type PostsControllerGetPostsParams = {
+export type PostsControllerGetPopularPostsParams = {
 /**
  * @minimum 1
  */

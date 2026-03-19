@@ -120,6 +120,7 @@ export * from './postsControllerCreatePost201';
 export * from './postsControllerDeleteComment200';
 export * from './postsControllerDeletePost200';
 export * from './postsControllerGetDeletedPosts200';
+export * from './postsControllerGetPopularPostsParams';
 export * from './postsControllerGetPost200';
 export * from './postsControllerGetPosts200';
 export * from './postsControllerGetPostsParams';
