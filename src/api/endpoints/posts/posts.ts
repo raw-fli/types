@@ -38,7 +38,8 @@ import type {
   PostListResponseDtoResponse,
   PostResponseDtoResponse,
   PostsControllerGetPopularPostsParams,
-  PostsControllerGetPostsParams
+  PostsControllerGetPostsParams,
+  SetCoverPhotoDto
 } from '../../model';
 
 import { customAxiosInstance } from '../../../mutator';
@@ -695,6 +696,71 @@ export const usePostsControllerDeletePost = <TError = unknown,
         TContext
       > => {
       return useMutation(getPostsControllerDeletePostMutationOptions(options), queryClient);
+    }
+    /**
+ * @summary 포스트 대표 작품 지정
+ */
+export const postsControllerSetPostCoverPhoto = (
+    boardId: number,
+    postId: number,
+    setCoverPhotoDto: SetCoverPhotoDto,
+ signal?: AbortSignal
+) => {
+      
+      
+      return customAxiosInstance<PostResponseDtoResponse>(
+      {url: `/api/v1/boards/${boardId}/posts/${postId}/cover`, method: 'PATCH',
+      headers: {'Content-Type': 'application/json', },
+      data: setCoverPhotoDto, signal
+    },
+      );
+    }
+  
+
+
+export const getPostsControllerSetPostCoverPhotoMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postsControllerSetPostCoverPhoto>>, TError,{boardId: number;postId: number;data: SetCoverPhotoDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof postsControllerSetPostCoverPhoto>>, TError,{boardId: number;postId: number;data: SetCoverPhotoDto}, TContext> => {
+
+const mutationKey = ['postsControllerSetPostCoverPhoto'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postsControllerSetPostCoverPhoto>>, {boardId: number;postId: number;data: SetCoverPhotoDto}> = (props) => {
+          const {boardId,postId,data} = props ?? {};
+
+          return  postsControllerSetPostCoverPhoto(boardId,postId,data,)
+        }
+
+
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PostsControllerSetPostCoverPhotoMutationResult = NonNullable<Awaited<ReturnType<typeof postsControllerSetPostCoverPhoto>>>
+    export type PostsControllerSetPostCoverPhotoMutationBody = SetCoverPhotoDto
+    export type PostsControllerSetPostCoverPhotoMutationError = unknown
+
+    /**
+ * @summary 포스트 대표 작품 지정
+ */
+export const usePostsControllerSetPostCoverPhoto = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postsControllerSetPostCoverPhoto>>, TError,{boardId: number;postId: number;data: SetCoverPhotoDto}, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof postsControllerSetPostCoverPhoto>>,
+        TError,
+        {boardId: number;postId: number;data: SetCoverPhotoDto},
+        TContext
+      > => {
+      return useMutation(getPostsControllerSetPostCoverPhotoMutationOptions(options), queryClient);
     }
     /**
  * @summary 작품 댓글 작성

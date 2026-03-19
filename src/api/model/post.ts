@@ -14,5 +14,6 @@ export interface Post {
   author: User;
   title: string;
   content: string;
+  coverPhoto: Photo | null;
   photos: Photo[];
 }

@@ -131,6 +131,7 @@ export * from './searchResultItemResponseDto';
 export * from './searchResultItemResponseDtoType';
 export * from './searchResultsResponseDto';
 export * from './searchResultsResponseDtoResponse';
+export * from './setCoverPhotoDto';
 export * from './tokenDto';
 export * from './tokenDtoResponse';
 export * from './updatePasswordDto';

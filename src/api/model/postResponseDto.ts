@@ -10,6 +10,8 @@ import type { UserResponseDto } from './userResponseDto';
 
 export interface PostResponseDto {
   photos?: PhotoResponseDto[];
+  /** @nullable */
+  coverPhotoId?: string | null;
   id: number;
   title: string;
   content: string;

@@ -8,6 +8,8 @@
 import type { UserResponseDto } from './userResponseDto';
 
 export interface PostListItemResponseDto {
+  /** @nullable */
+  thumbnailKey?: string | null;
   id: number;
   title: string;
   author: UserResponseDto;
