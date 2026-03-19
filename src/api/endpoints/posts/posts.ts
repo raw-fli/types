@@ -30,7 +30,10 @@ import type {
 } from '@tanstack/react-query';
 
 import type {
+  CommentResponseDtoResponse,
+  CreateCommentDto,
   CreatePostDto,
+  DeletedCommentResponseDtoResponse,
   DeletedPostResponseDtoResponse,
   PostListResponseDtoResponse,
   PostResponseDtoResponse,
@@ -43,7 +46,7 @@ import { customAxiosInstance } from '../../../mutator';
 
 
 /**
- * @summary 게시글 목록 조회
+ * @summary 포스트 목록 조회
  */
 export const postsControllerGetPosts = (
     boardId: number,
@@ -128,7 +131,7 @@ export function usePostsControllerGetPostsInfinite<TData = InfiniteData<Awaited<
  , queryClient?: QueryClient
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
- * @summary 게시글 목록 조회
+ * @summary 포스트 목록 조회
  */
 
 export function usePostsControllerGetPostsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof postsControllerGetPosts>>>, TError = unknown>(
@@ -198,7 +201,7 @@ export function usePostsControllerGetPosts<TData = Awaited<ReturnType<typeof pos
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
- * @summary 게시글 목록 조회
+ * @summary 포스트 목록 조회
  */
 
 export function usePostsControllerGetPosts<TData = Awaited<ReturnType<typeof postsControllerGetPosts>>, TError = unknown>(
@@ -218,7 +221,7 @@ export function usePostsControllerGetPosts<TData = Awaited<ReturnType<typeof pos
 
 
 /**
- * @summary 게시글 작성
+ * @summary 포스트 작성
  */
 export const postsControllerCreatePost = (
     boardId: number,
@@ -269,7 +272,7 @@ const {mutation: mutationOptions} = options ?
     export type PostsControllerCreatePostMutationError = unknown
 
     /**
- * @summary 게시글 작성
+ * @summary 포스트 작성
  */
 export const usePostsControllerCreatePost = <TError = unknown,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postsControllerCreatePost>>, TError,{boardId: number;data: CreatePostDto}, TContext>, }
@@ -282,7 +285,7 @@ export const usePostsControllerCreatePost = <TError = unknown,
       return useMutation(getPostsControllerCreatePostMutationOptions(options), queryClient);
     }
     /**
- * @summary 게시글 조회
+ * @summary 포스트 조회
  */
 export const postsControllerGetPost = (
     boardId: number,
@@ -366,7 +369,7 @@ export function usePostsControllerGetPostInfinite<TData = InfiniteData<Awaited<R
  , queryClient?: QueryClient
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
- * @summary 게시글 조회
+ * @summary 포스트 조회
  */
 
 export function usePostsControllerGetPostInfinite<TData = InfiniteData<Awaited<ReturnType<typeof postsControllerGetPost>>>, TError = unknown>(
@@ -436,7 +439,7 @@ export function usePostsControllerGetPost<TData = Awaited<ReturnType<typeof post
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
- * @summary 게시글 조회
+ * @summary 포스트 조회
  */
 
 export function usePostsControllerGetPost<TData = Awaited<ReturnType<typeof postsControllerGetPost>>, TError = unknown>(
@@ -456,7 +459,7 @@ export function usePostsControllerGetPost<TData = Awaited<ReturnType<typeof post
 
 
 /**
- * @summary 게시글 삭제
+ * @summary 포스트 삭제
  */
 export const postsControllerDeletePost = (
     boardId: number,
@@ -505,7 +508,7 @@ const {mutation: mutationOptions} = options ?
     export type PostsControllerDeletePostMutationError = unknown
 
     /**
- * @summary 게시글 삭제
+ * @summary 포스트 삭제
  */
 export const usePostsControllerDeletePost = <TError = unknown,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postsControllerDeletePost>>, TError,{boardId: number;postId: number}, TContext>, }
@@ -516,5 +519,135 @@ export const usePostsControllerDeletePost = <TError = unknown,
         TContext
       > => {
       return useMutation(getPostsControllerDeletePostMutationOptions(options), queryClient);
+    }
+    /**
+ * @summary 작품 댓글 작성
+ */
+export const postsControllerCreatePhotoComment = (
+    boardId: number,
+    postId: number,
+    photoId: string,
+    createCommentDto: CreateCommentDto,
+ signal?: AbortSignal
+) => {
+      
+      
+      return customAxiosInstance<CommentResponseDtoResponse>(
+      {url: `/api/v1/boards/${boardId}/posts/${postId}/photos/${photoId}/comments`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: createCommentDto, signal
+    },
+      );
+    }
+  
+
+
+export const getPostsControllerCreatePhotoCommentMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postsControllerCreatePhotoComment>>, TError,{boardId: number;postId: number;photoId: string;data: CreateCommentDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof postsControllerCreatePhotoComment>>, TError,{boardId: number;postId: number;photoId: string;data: CreateCommentDto}, TContext> => {
+
+const mutationKey = ['postsControllerCreatePhotoComment'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postsControllerCreatePhotoComment>>, {boardId: number;postId: number;photoId: string;data: CreateCommentDto}> = (props) => {
+          const {boardId,postId,photoId,data} = props ?? {};
+
+          return  postsControllerCreatePhotoComment(boardId,postId,photoId,data,)
+        }
+
+
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PostsControllerCreatePhotoCommentMutationResult = NonNullable<Awaited<ReturnType<typeof postsControllerCreatePhotoComment>>>
+    export type PostsControllerCreatePhotoCommentMutationBody = CreateCommentDto
+    export type PostsControllerCreatePhotoCommentMutationError = unknown
+
+    /**
+ * @summary 작품 댓글 작성
+ */
+export const usePostsControllerCreatePhotoComment = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postsControllerCreatePhotoComment>>, TError,{boardId: number;postId: number;photoId: string;data: CreateCommentDto}, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof postsControllerCreatePhotoComment>>,
+        TError,
+        {boardId: number;postId: number;photoId: string;data: CreateCommentDto},
+        TContext
+      > => {
+      return useMutation(getPostsControllerCreatePhotoCommentMutationOptions(options), queryClient);
+    }
+    /**
+ * @summary 작품 댓글 삭제
+ */
+export const postsControllerDeletePhotoComment = (
+    boardId: number,
+    postId: number,
+    photoId: string,
+    commentId: number,
+ signal?: AbortSignal
+) => {
+      
+      
+      return customAxiosInstance<DeletedCommentResponseDtoResponse>(
+      {url: `/api/v1/boards/${boardId}/posts/${postId}/photos/${photoId}/comments/${commentId}`, method: 'DELETE', signal
+    },
+      );
+    }
+  
+
+
+export const getPostsControllerDeletePhotoCommentMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postsControllerDeletePhotoComment>>, TError,{boardId: number;postId: number;photoId: string;commentId: number}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof postsControllerDeletePhotoComment>>, TError,{boardId: number;postId: number;photoId: string;commentId: number}, TContext> => {
+
+const mutationKey = ['postsControllerDeletePhotoComment'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postsControllerDeletePhotoComment>>, {boardId: number;postId: number;photoId: string;commentId: number}> = (props) => {
+          const {boardId,postId,photoId,commentId} = props ?? {};
+
+          return  postsControllerDeletePhotoComment(boardId,postId,photoId,commentId,)
+        }
+
+
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PostsControllerDeletePhotoCommentMutationResult = NonNullable<Awaited<ReturnType<typeof postsControllerDeletePhotoComment>>>
+    
+    export type PostsControllerDeletePhotoCommentMutationError = unknown
+
+    /**
+ * @summary 작품 댓글 삭제
+ */
+export const usePostsControllerDeletePhotoComment = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postsControllerDeletePhotoComment>>, TError,{boardId: number;postId: number;photoId: string;commentId: number}, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof postsControllerDeletePhotoComment>>,
+        TError,
+        {boardId: number;postId: number;photoId: string;commentId: number},
+        TContext
+      > => {
+      return useMutation(getPostsControllerDeletePhotoCommentMutationOptions(options), queryClient);
     }
     

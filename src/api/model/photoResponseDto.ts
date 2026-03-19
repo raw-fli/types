@@ -5,6 +5,7 @@
  * The Rawfli API description
  * OpenAPI spec version: 1.0
  */
+import type { CommentResponseDto } from './commentResponseDto';
 import type { PhotoCameraResponseDto } from './photoCameraResponseDto';
 import type { PhotoLensResponseDto } from './photoLensResponseDto';
 
@@ -22,6 +23,8 @@ export interface PhotoResponseDto {
   focalLength?: number | null;
   camera?: PhotoCameraResponseDto | null;
   lens?: PhotoLensResponseDto | null;
+  comments?: CommentResponseDto[];
   id: string;
   imageKey: string;
+  commentCount: number;
 }
