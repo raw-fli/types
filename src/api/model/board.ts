@@ -6,15 +6,12 @@
  * OpenAPI spec version: 1.0
  */
 import type { Article } from './article';
-import type { BoardType } from './boardType';
-import type { Post } from './post';
 
 export interface Board {
   id: number;
-  type: BoardType;
+  type: string;
   name: string;
   description: string;
   articles: Article[];
-  posts: Post[];
   maxPostId: number;
 }

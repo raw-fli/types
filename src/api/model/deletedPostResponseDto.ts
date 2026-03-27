@@ -9,11 +9,9 @@
 export interface DeletedPostResponseDto {
   id: number;
   originalPostId: number;
-  boardId: number;
   authorId: number;
   title: string;
   content: string;
-  type: string;
   views: number;
   originalCreatedAt: string;
   deletedAt: string;

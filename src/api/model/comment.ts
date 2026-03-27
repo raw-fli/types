@@ -7,12 +7,12 @@
  */
 import type { Article } from './article';
 import type { Comment as __Comment } from './comment';
-import type { CommentPhoto } from './commentPhoto';
+import type { Photo } from './photo';
 import type { User } from './user';
 
 export interface Comment {
   article?: Article;
-  photo?: CommentPhoto;
+  photo?: Photo;
   author: User;
   content: string;
   replies: Comment[];

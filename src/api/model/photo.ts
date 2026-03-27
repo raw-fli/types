@@ -6,9 +6,9 @@
  * OpenAPI spec version: 1.0
  */
 import type { Camera } from './camera';
+import type { Comment } from './comment';
 import type { Image } from './image';
 import type { Lens } from './lens';
-import type { PhotoCommentsItem } from './photoCommentsItem';
 import type { PhotoReferencedInArticlesItem } from './photoReferencedInArticlesItem';
 import type { Post } from './post';
 import type { User } from './user';
@@ -33,6 +33,6 @@ export interface Photo {
   lens: Lens | null;
   likes: User[];
   referencedInArticles: PhotoReferencedInArticlesItem[];
-  comments: PhotoCommentsItem[];
+  comments: Comment[];
   commentCount: number;
 }

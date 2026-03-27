@@ -51,14 +51,13 @@ import { customAxiosInstance } from '../../../mutator';
  * @summary 포스트 목록 조회
  */
 export const postsControllerGetPosts = (
-    boardId: number,
     params?: PostsControllerGetPostsParams,
  signal?: AbortSignal
 ) => {
       
       
       return customAxiosInstance<PostListResponseDtoResponse>(
-      {url: `/api/v1/boards/${boardId}/posts`, method: 'GET',
+      {url: `/api/v1/posts`, method: 'GET',
         params, signal
     },
       );
@@ -67,38 +66,35 @@ export const postsControllerGetPosts = (
 
 
 
-export const getPostsControllerGetPostsInfiniteQueryKey = (boardId: number,
-    params?: PostsControllerGetPostsParams,) => {
+export const getPostsControllerGetPostsInfiniteQueryKey = (params?: PostsControllerGetPostsParams,) => {
     return [
-    'infinite', `/api/v1/boards/${boardId}/posts`, ...(params ? [params] : [])
+    'infinite', `/api/v1/posts`, ...(params ? [params] : [])
     ] as const;
     }
 
-export const getPostsControllerGetPostsQueryKey = (boardId: number,
-    params?: PostsControllerGetPostsParams,) => {
+export const getPostsControllerGetPostsQueryKey = (params?: PostsControllerGetPostsParams,) => {
     return [
-    `/api/v1/boards/${boardId}/posts`, ...(params ? [params] : [])
+    `/api/v1/posts`, ...(params ? [params] : [])
     ] as const;
     }
 
     
-export const getPostsControllerGetPostsInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof postsControllerGetPosts>>>, TError = unknown>(boardId: number,
-    params?: PostsControllerGetPostsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPosts>>, TError, TData>>, }
+export const getPostsControllerGetPostsInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof postsControllerGetPosts>>>, TError = unknown>(params?: PostsControllerGetPostsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPosts>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getPostsControllerGetPostsInfiniteQueryKey(boardId,params);
+  const queryKey =  queryOptions?.queryKey ?? getPostsControllerGetPostsInfiniteQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof postsControllerGetPosts>>> = ({ signal }) => postsControllerGetPosts(boardId,params, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof postsControllerGetPosts>>> = ({ signal }) => postsControllerGetPosts(params, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, enabled: !!(boardId), ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPosts>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPosts>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type PostsControllerGetPostsInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof postsControllerGetPosts>>>
@@ -106,8 +102,7 @@ export type PostsControllerGetPostsInfiniteQueryError = unknown
 
 
 export function usePostsControllerGetPostsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof postsControllerGetPosts>>>, TError = unknown>(
- boardId: number,
-    params: undefined |  PostsControllerGetPostsParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPosts>>, TError, TData>> & Pick<
+ params: undefined |  PostsControllerGetPostsParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPosts>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof postsControllerGetPosts>>,
           TError,
@@ -117,8 +112,7 @@ export function usePostsControllerGetPostsInfinite<TData = InfiniteData<Awaited<
  , queryClient?: QueryClient
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function usePostsControllerGetPostsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof postsControllerGetPosts>>>, TError = unknown>(
- boardId: number,
-    params?: PostsControllerGetPostsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPosts>>, TError, TData>> & Pick<
+ params?: PostsControllerGetPostsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPosts>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof postsControllerGetPosts>>,
           TError,
@@ -128,8 +122,7 @@ export function usePostsControllerGetPostsInfinite<TData = InfiniteData<Awaited<
  , queryClient?: QueryClient
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function usePostsControllerGetPostsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof postsControllerGetPosts>>>, TError = unknown>(
- boardId: number,
-    params?: PostsControllerGetPostsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPosts>>, TError, TData>>, }
+ params?: PostsControllerGetPostsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPosts>>, TError, TData>>, }
  , queryClient?: QueryClient
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -137,12 +130,11 @@ export function usePostsControllerGetPostsInfinite<TData = InfiniteData<Awaited<
  */
 
 export function usePostsControllerGetPostsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof postsControllerGetPosts>>>, TError = unknown>(
- boardId: number,
-    params?: PostsControllerGetPostsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPosts>>, TError, TData>>, }
+ params?: PostsControllerGetPostsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPosts>>, TError, TData>>, }
  , queryClient?: QueryClient 
  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
-  const queryOptions = getPostsControllerGetPostsInfiniteQueryOptions(boardId,params,options)
+  const queryOptions = getPostsControllerGetPostsInfiniteQueryOptions(params,options)
 
   const query = useInfiniteQuery(queryOptions, queryClient) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
@@ -152,23 +144,22 @@ export function usePostsControllerGetPostsInfinite<TData = InfiniteData<Awaited<
 
 
 
-export const getPostsControllerGetPostsQueryOptions = <TData = Awaited<ReturnType<typeof postsControllerGetPosts>>, TError = unknown>(boardId: number,
-    params?: PostsControllerGetPostsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPosts>>, TError, TData>>, }
+export const getPostsControllerGetPostsQueryOptions = <TData = Awaited<ReturnType<typeof postsControllerGetPosts>>, TError = unknown>(params?: PostsControllerGetPostsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPosts>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getPostsControllerGetPostsQueryKey(boardId,params);
+  const queryKey =  queryOptions?.queryKey ?? getPostsControllerGetPostsQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof postsControllerGetPosts>>> = ({ signal }) => postsControllerGetPosts(boardId,params, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof postsControllerGetPosts>>> = ({ signal }) => postsControllerGetPosts(params, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, enabled: !!(boardId), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPosts>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPosts>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type PostsControllerGetPostsQueryResult = NonNullable<Awaited<ReturnType<typeof postsControllerGetPosts>>>
@@ -176,8 +167,7 @@ export type PostsControllerGetPostsQueryError = unknown
 
 
 export function usePostsControllerGetPosts<TData = Awaited<ReturnType<typeof postsControllerGetPosts>>, TError = unknown>(
- boardId: number,
-    params: undefined |  PostsControllerGetPostsParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPosts>>, TError, TData>> & Pick<
+ params: undefined |  PostsControllerGetPostsParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPosts>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof postsControllerGetPosts>>,
           TError,
@@ -187,8 +177,7 @@ export function usePostsControllerGetPosts<TData = Awaited<ReturnType<typeof pos
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function usePostsControllerGetPosts<TData = Awaited<ReturnType<typeof postsControllerGetPosts>>, TError = unknown>(
- boardId: number,
-    params?: PostsControllerGetPostsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPosts>>, TError, TData>> & Pick<
+ params?: PostsControllerGetPostsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPosts>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof postsControllerGetPosts>>,
           TError,
@@ -198,8 +187,7 @@ export function usePostsControllerGetPosts<TData = Awaited<ReturnType<typeof pos
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function usePostsControllerGetPosts<TData = Awaited<ReturnType<typeof postsControllerGetPosts>>, TError = unknown>(
- boardId: number,
-    params?: PostsControllerGetPostsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPosts>>, TError, TData>>, }
+ params?: PostsControllerGetPostsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPosts>>, TError, TData>>, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -207,12 +195,11 @@ export function usePostsControllerGetPosts<TData = Awaited<ReturnType<typeof pos
  */
 
 export function usePostsControllerGetPosts<TData = Awaited<ReturnType<typeof postsControllerGetPosts>>, TError = unknown>(
- boardId: number,
-    params?: PostsControllerGetPostsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPosts>>, TError, TData>>, }
+ params?: PostsControllerGetPostsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPosts>>, TError, TData>>, }
  , queryClient?: QueryClient 
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
-  const queryOptions = getPostsControllerGetPostsQueryOptions(boardId,params,options)
+  const queryOptions = getPostsControllerGetPostsQueryOptions(params,options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
@@ -226,14 +213,13 @@ export function usePostsControllerGetPosts<TData = Awaited<ReturnType<typeof pos
  * @summary 포스트 작성
  */
 export const postsControllerCreatePost = (
-    boardId: number,
     createPostDto: CreatePostDto,
  signal?: AbortSignal
 ) => {
       
       
       return customAxiosInstance<PostResponseDtoResponse>(
-      {url: `/api/v1/boards/${boardId}/posts`, method: 'POST',
+      {url: `/api/v1/posts`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
       data: createPostDto, signal
     },
@@ -243,8 +229,8 @@ export const postsControllerCreatePost = (
 
 
 export const getPostsControllerCreatePostMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postsControllerCreatePost>>, TError,{boardId: number;data: CreatePostDto}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof postsControllerCreatePost>>, TError,{boardId: number;data: CreatePostDto}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postsControllerCreatePost>>, TError,{data: CreatePostDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof postsControllerCreatePost>>, TError,{data: CreatePostDto}, TContext> => {
 
 const mutationKey = ['postsControllerCreatePost'];
 const {mutation: mutationOptions} = options ?
@@ -256,10 +242,10 @@ const {mutation: mutationOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postsControllerCreatePost>>, {boardId: number;data: CreatePostDto}> = (props) => {
-          const {boardId,data} = props ?? {};
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postsControllerCreatePost>>, {data: CreatePostDto}> = (props) => {
+          const {data} = props ?? {};
 
-          return  postsControllerCreatePost(boardId,data,)
+          return  postsControllerCreatePost(data,)
         }
 
 
@@ -277,11 +263,11 @@ const {mutation: mutationOptions} = options ?
  * @summary 포스트 작성
  */
 export const usePostsControllerCreatePost = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postsControllerCreatePost>>, TError,{boardId: number;data: CreatePostDto}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postsControllerCreatePost>>, TError,{data: CreatePostDto}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postsControllerCreatePost>>,
         TError,
-        {boardId: number;data: CreatePostDto},
+        {data: CreatePostDto},
         TContext
       > => {
       return useMutation(getPostsControllerCreatePostMutationOptions(options), queryClient);
@@ -290,14 +276,13 @@ export const usePostsControllerCreatePost = <TError = unknown,
  * @summary 인기 포스트 목록 조회
  */
 export const postsControllerGetPopularPosts = (
-    boardId: number,
     params?: PostsControllerGetPopularPostsParams,
  signal?: AbortSignal
 ) => {
       
       
       return customAxiosInstance<PostListResponseDtoResponse>(
-      {url: `/api/v1/boards/${boardId}/posts/popular`, method: 'GET',
+      {url: `/api/v1/posts/popular`, method: 'GET',
         params, signal
     },
       );
@@ -306,38 +291,35 @@ export const postsControllerGetPopularPosts = (
 
 
 
-export const getPostsControllerGetPopularPostsInfiniteQueryKey = (boardId: number,
-    params?: PostsControllerGetPopularPostsParams,) => {
+export const getPostsControllerGetPopularPostsInfiniteQueryKey = (params?: PostsControllerGetPopularPostsParams,) => {
     return [
-    'infinite', `/api/v1/boards/${boardId}/posts/popular`, ...(params ? [params] : [])
+    'infinite', `/api/v1/posts/popular`, ...(params ? [params] : [])
     ] as const;
     }
 
-export const getPostsControllerGetPopularPostsQueryKey = (boardId: number,
-    params?: PostsControllerGetPopularPostsParams,) => {
+export const getPostsControllerGetPopularPostsQueryKey = (params?: PostsControllerGetPopularPostsParams,) => {
     return [
-    `/api/v1/boards/${boardId}/posts/popular`, ...(params ? [params] : [])
+    `/api/v1/posts/popular`, ...(params ? [params] : [])
     ] as const;
     }
 
     
-export const getPostsControllerGetPopularPostsInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>>, TError = unknown>(boardId: number,
-    params?: PostsControllerGetPopularPostsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>, TError, TData>>, }
+export const getPostsControllerGetPopularPostsInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>>, TError = unknown>(params?: PostsControllerGetPopularPostsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getPostsControllerGetPopularPostsInfiniteQueryKey(boardId,params);
+  const queryKey =  queryOptions?.queryKey ?? getPostsControllerGetPopularPostsInfiniteQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>> = ({ signal }) => postsControllerGetPopularPosts(boardId,params, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>> = ({ signal }) => postsControllerGetPopularPosts(params, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, enabled: !!(boardId), ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type PostsControllerGetPopularPostsInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>>
@@ -345,8 +327,7 @@ export type PostsControllerGetPopularPostsInfiniteQueryError = unknown
 
 
 export function usePostsControllerGetPopularPostsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>>, TError = unknown>(
- boardId: number,
-    params: undefined |  PostsControllerGetPopularPostsParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>, TError, TData>> & Pick<
+ params: undefined |  PostsControllerGetPopularPostsParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof postsControllerGetPopularPosts>>,
           TError,
@@ -356,8 +337,7 @@ export function usePostsControllerGetPopularPostsInfinite<TData = InfiniteData<A
  , queryClient?: QueryClient
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function usePostsControllerGetPopularPostsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>>, TError = unknown>(
- boardId: number,
-    params?: PostsControllerGetPopularPostsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>, TError, TData>> & Pick<
+ params?: PostsControllerGetPopularPostsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof postsControllerGetPopularPosts>>,
           TError,
@@ -367,8 +347,7 @@ export function usePostsControllerGetPopularPostsInfinite<TData = InfiniteData<A
  , queryClient?: QueryClient
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function usePostsControllerGetPopularPostsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>>, TError = unknown>(
- boardId: number,
-    params?: PostsControllerGetPopularPostsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>, TError, TData>>, }
+ params?: PostsControllerGetPopularPostsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>, TError, TData>>, }
  , queryClient?: QueryClient
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -376,12 +355,11 @@ export function usePostsControllerGetPopularPostsInfinite<TData = InfiniteData<A
  */
 
 export function usePostsControllerGetPopularPostsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>>, TError = unknown>(
- boardId: number,
-    params?: PostsControllerGetPopularPostsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>, TError, TData>>, }
+ params?: PostsControllerGetPopularPostsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>, TError, TData>>, }
  , queryClient?: QueryClient 
  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
-  const queryOptions = getPostsControllerGetPopularPostsInfiniteQueryOptions(boardId,params,options)
+  const queryOptions = getPostsControllerGetPopularPostsInfiniteQueryOptions(params,options)
 
   const query = useInfiniteQuery(queryOptions, queryClient) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
@@ -391,23 +369,22 @@ export function usePostsControllerGetPopularPostsInfinite<TData = InfiniteData<A
 
 
 
-export const getPostsControllerGetPopularPostsQueryOptions = <TData = Awaited<ReturnType<typeof postsControllerGetPopularPosts>>, TError = unknown>(boardId: number,
-    params?: PostsControllerGetPopularPostsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>, TError, TData>>, }
+export const getPostsControllerGetPopularPostsQueryOptions = <TData = Awaited<ReturnType<typeof postsControllerGetPopularPosts>>, TError = unknown>(params?: PostsControllerGetPopularPostsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getPostsControllerGetPopularPostsQueryKey(boardId,params);
+  const queryKey =  queryOptions?.queryKey ?? getPostsControllerGetPopularPostsQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>> = ({ signal }) => postsControllerGetPopularPosts(boardId,params, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>> = ({ signal }) => postsControllerGetPopularPosts(params, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, enabled: !!(boardId), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type PostsControllerGetPopularPostsQueryResult = NonNullable<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>>
@@ -415,8 +392,7 @@ export type PostsControllerGetPopularPostsQueryError = unknown
 
 
 export function usePostsControllerGetPopularPosts<TData = Awaited<ReturnType<typeof postsControllerGetPopularPosts>>, TError = unknown>(
- boardId: number,
-    params: undefined |  PostsControllerGetPopularPostsParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>, TError, TData>> & Pick<
+ params: undefined |  PostsControllerGetPopularPostsParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof postsControllerGetPopularPosts>>,
           TError,
@@ -426,8 +402,7 @@ export function usePostsControllerGetPopularPosts<TData = Awaited<ReturnType<typ
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function usePostsControllerGetPopularPosts<TData = Awaited<ReturnType<typeof postsControllerGetPopularPosts>>, TError = unknown>(
- boardId: number,
-    params?: PostsControllerGetPopularPostsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>, TError, TData>> & Pick<
+ params?: PostsControllerGetPopularPostsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof postsControllerGetPopularPosts>>,
           TError,
@@ -437,8 +412,7 @@ export function usePostsControllerGetPopularPosts<TData = Awaited<ReturnType<typ
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function usePostsControllerGetPopularPosts<TData = Awaited<ReturnType<typeof postsControllerGetPopularPosts>>, TError = unknown>(
- boardId: number,
-    params?: PostsControllerGetPopularPostsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>, TError, TData>>, }
+ params?: PostsControllerGetPopularPostsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>, TError, TData>>, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -446,12 +420,11 @@ export function usePostsControllerGetPopularPosts<TData = Awaited<ReturnType<typ
  */
 
 export function usePostsControllerGetPopularPosts<TData = Awaited<ReturnType<typeof postsControllerGetPopularPosts>>, TError = unknown>(
- boardId: number,
-    params?: PostsControllerGetPopularPostsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>, TError, TData>>, }
+ params?: PostsControllerGetPopularPostsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPopularPosts>>, TError, TData>>, }
  , queryClient?: QueryClient 
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
-  const queryOptions = getPostsControllerGetPopularPostsQueryOptions(boardId,params,options)
+  const queryOptions = getPostsControllerGetPopularPostsQueryOptions(params,options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
@@ -465,14 +438,13 @@ export function usePostsControllerGetPopularPosts<TData = Awaited<ReturnType<typ
  * @summary 포스트 조회
  */
 export const postsControllerGetPost = (
-    boardId: number,
     postId: number,
  signal?: AbortSignal
 ) => {
       
       
       return customAxiosInstance<PostResponseDtoResponse>(
-      {url: `/api/v1/boards/${boardId}/posts/${postId}`, method: 'GET', signal
+      {url: `/api/v1/posts/${postId}`, method: 'GET', signal
     },
       );
     }
@@ -480,38 +452,35 @@ export const postsControllerGetPost = (
 
 
 
-export const getPostsControllerGetPostInfiniteQueryKey = (boardId: number,
-    postId: number,) => {
+export const getPostsControllerGetPostInfiniteQueryKey = (postId: number,) => {
     return [
-    'infinite', `/api/v1/boards/${boardId}/posts/${postId}`
+    'infinite', `/api/v1/posts/${postId}`
     ] as const;
     }
 
-export const getPostsControllerGetPostQueryKey = (boardId: number,
-    postId: number,) => {
+export const getPostsControllerGetPostQueryKey = (postId: number,) => {
     return [
-    `/api/v1/boards/${boardId}/posts/${postId}`
+    `/api/v1/posts/${postId}`
     ] as const;
     }
 
     
-export const getPostsControllerGetPostInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof postsControllerGetPost>>>, TError = unknown>(boardId: number,
-    postId: number, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPost>>, TError, TData>>, }
+export const getPostsControllerGetPostInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof postsControllerGetPost>>>, TError = unknown>(postId: number, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPost>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getPostsControllerGetPostInfiniteQueryKey(boardId,postId);
+  const queryKey =  queryOptions?.queryKey ?? getPostsControllerGetPostInfiniteQueryKey(postId);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof postsControllerGetPost>>> = ({ signal }) => postsControllerGetPost(boardId,postId, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof postsControllerGetPost>>> = ({ signal }) => postsControllerGetPost(postId, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, enabled: !!(boardId && postId), ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPost>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+   return  { queryKey, queryFn, enabled: !!(postId), ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPost>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type PostsControllerGetPostInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof postsControllerGetPost>>>
@@ -519,8 +488,7 @@ export type PostsControllerGetPostInfiniteQueryError = unknown
 
 
 export function usePostsControllerGetPostInfinite<TData = InfiniteData<Awaited<ReturnType<typeof postsControllerGetPost>>>, TError = unknown>(
- boardId: number,
-    postId: number, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPost>>, TError, TData>> & Pick<
+ postId: number, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPost>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof postsControllerGetPost>>,
           TError,
@@ -530,8 +498,7 @@ export function usePostsControllerGetPostInfinite<TData = InfiniteData<Awaited<R
  , queryClient?: QueryClient
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function usePostsControllerGetPostInfinite<TData = InfiniteData<Awaited<ReturnType<typeof postsControllerGetPost>>>, TError = unknown>(
- boardId: number,
-    postId: number, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPost>>, TError, TData>> & Pick<
+ postId: number, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPost>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof postsControllerGetPost>>,
           TError,
@@ -541,8 +508,7 @@ export function usePostsControllerGetPostInfinite<TData = InfiniteData<Awaited<R
  , queryClient?: QueryClient
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function usePostsControllerGetPostInfinite<TData = InfiniteData<Awaited<ReturnType<typeof postsControllerGetPost>>>, TError = unknown>(
- boardId: number,
-    postId: number, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPost>>, TError, TData>>, }
+ postId: number, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPost>>, TError, TData>>, }
  , queryClient?: QueryClient
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -550,12 +516,11 @@ export function usePostsControllerGetPostInfinite<TData = InfiniteData<Awaited<R
  */
 
 export function usePostsControllerGetPostInfinite<TData = InfiniteData<Awaited<ReturnType<typeof postsControllerGetPost>>>, TError = unknown>(
- boardId: number,
-    postId: number, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPost>>, TError, TData>>, }
+ postId: number, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof postsControllerGetPost>>, TError, TData>>, }
  , queryClient?: QueryClient 
  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
-  const queryOptions = getPostsControllerGetPostInfiniteQueryOptions(boardId,postId,options)
+  const queryOptions = getPostsControllerGetPostInfiniteQueryOptions(postId,options)
 
   const query = useInfiniteQuery(queryOptions, queryClient) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
@@ -565,23 +530,22 @@ export function usePostsControllerGetPostInfinite<TData = InfiniteData<Awaited<R
 
 
 
-export const getPostsControllerGetPostQueryOptions = <TData = Awaited<ReturnType<typeof postsControllerGetPost>>, TError = unknown>(boardId: number,
-    postId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPost>>, TError, TData>>, }
+export const getPostsControllerGetPostQueryOptions = <TData = Awaited<ReturnType<typeof postsControllerGetPost>>, TError = unknown>(postId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPost>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getPostsControllerGetPostQueryKey(boardId,postId);
+  const queryKey =  queryOptions?.queryKey ?? getPostsControllerGetPostQueryKey(postId);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof postsControllerGetPost>>> = ({ signal }) => postsControllerGetPost(boardId,postId, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof postsControllerGetPost>>> = ({ signal }) => postsControllerGetPost(postId, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, enabled: !!(boardId && postId), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPost>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+   return  { queryKey, queryFn, enabled: !!(postId), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPost>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type PostsControllerGetPostQueryResult = NonNullable<Awaited<ReturnType<typeof postsControllerGetPost>>>
@@ -589,8 +553,7 @@ export type PostsControllerGetPostQueryError = unknown
 
 
 export function usePostsControllerGetPost<TData = Awaited<ReturnType<typeof postsControllerGetPost>>, TError = unknown>(
- boardId: number,
-    postId: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPost>>, TError, TData>> & Pick<
+ postId: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPost>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof postsControllerGetPost>>,
           TError,
@@ -600,8 +563,7 @@ export function usePostsControllerGetPost<TData = Awaited<ReturnType<typeof post
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function usePostsControllerGetPost<TData = Awaited<ReturnType<typeof postsControllerGetPost>>, TError = unknown>(
- boardId: number,
-    postId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPost>>, TError, TData>> & Pick<
+ postId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPost>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof postsControllerGetPost>>,
           TError,
@@ -611,8 +573,7 @@ export function usePostsControllerGetPost<TData = Awaited<ReturnType<typeof post
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function usePostsControllerGetPost<TData = Awaited<ReturnType<typeof postsControllerGetPost>>, TError = unknown>(
- boardId: number,
-    postId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPost>>, TError, TData>>, }
+ postId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPost>>, TError, TData>>, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -620,12 +581,11 @@ export function usePostsControllerGetPost<TData = Awaited<ReturnType<typeof post
  */
 
 export function usePostsControllerGetPost<TData = Awaited<ReturnType<typeof postsControllerGetPost>>, TError = unknown>(
- boardId: number,
-    postId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPost>>, TError, TData>>, }
+ postId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof postsControllerGetPost>>, TError, TData>>, }
  , queryClient?: QueryClient 
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
-  const queryOptions = getPostsControllerGetPostQueryOptions(boardId,postId,options)
+  const queryOptions = getPostsControllerGetPostQueryOptions(postId,options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
@@ -639,14 +599,13 @@ export function usePostsControllerGetPost<TData = Awaited<ReturnType<typeof post
  * @summary 포스트 삭제
  */
 export const postsControllerDeletePost = (
-    boardId: number,
     postId: number,
  signal?: AbortSignal
 ) => {
       
       
       return customAxiosInstance<DeletedPostResponseDtoResponse>(
-      {url: `/api/v1/boards/${boardId}/posts/${postId}`, method: 'DELETE', signal
+      {url: `/api/v1/posts/${postId}`, method: 'DELETE', signal
     },
       );
     }
@@ -654,8 +613,8 @@ export const postsControllerDeletePost = (
 
 
 export const getPostsControllerDeletePostMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postsControllerDeletePost>>, TError,{boardId: number;postId: number}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof postsControllerDeletePost>>, TError,{boardId: number;postId: number}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postsControllerDeletePost>>, TError,{postId: number}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof postsControllerDeletePost>>, TError,{postId: number}, TContext> => {
 
 const mutationKey = ['postsControllerDeletePost'];
 const {mutation: mutationOptions} = options ?
@@ -667,10 +626,10 @@ const {mutation: mutationOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postsControllerDeletePost>>, {boardId: number;postId: number}> = (props) => {
-          const {boardId,postId} = props ?? {};
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postsControllerDeletePost>>, {postId: number}> = (props) => {
+          const {postId} = props ?? {};
 
-          return  postsControllerDeletePost(boardId,postId,)
+          return  postsControllerDeletePost(postId,)
         }
 
 
@@ -688,11 +647,11 @@ const {mutation: mutationOptions} = options ?
  * @summary 포스트 삭제
  */
 export const usePostsControllerDeletePost = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postsControllerDeletePost>>, TError,{boardId: number;postId: number}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postsControllerDeletePost>>, TError,{postId: number}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postsControllerDeletePost>>,
         TError,
-        {boardId: number;postId: number},
+        {postId: number},
         TContext
       > => {
       return useMutation(getPostsControllerDeletePostMutationOptions(options), queryClient);
@@ -701,7 +660,6 @@ export const usePostsControllerDeletePost = <TError = unknown,
  * @summary 포스트 대표 작품 지정
  */
 export const postsControllerSetPostCoverPhoto = (
-    boardId: number,
     postId: number,
     setCoverPhotoDto: SetCoverPhotoDto,
  signal?: AbortSignal
@@ -709,7 +667,7 @@ export const postsControllerSetPostCoverPhoto = (
       
       
       return customAxiosInstance<PostResponseDtoResponse>(
-      {url: `/api/v1/boards/${boardId}/posts/${postId}/cover`, method: 'PATCH',
+      {url: `/api/v1/posts/${postId}/cover`, method: 'PATCH',
       headers: {'Content-Type': 'application/json', },
       data: setCoverPhotoDto, signal
     },
@@ -719,8 +677,8 @@ export const postsControllerSetPostCoverPhoto = (
 
 
 export const getPostsControllerSetPostCoverPhotoMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postsControllerSetPostCoverPhoto>>, TError,{boardId: number;postId: number;data: SetCoverPhotoDto}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof postsControllerSetPostCoverPhoto>>, TError,{boardId: number;postId: number;data: SetCoverPhotoDto}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postsControllerSetPostCoverPhoto>>, TError,{postId: number;data: SetCoverPhotoDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof postsControllerSetPostCoverPhoto>>, TError,{postId: number;data: SetCoverPhotoDto}, TContext> => {
 
 const mutationKey = ['postsControllerSetPostCoverPhoto'];
 const {mutation: mutationOptions} = options ?
@@ -732,10 +690,10 @@ const {mutation: mutationOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postsControllerSetPostCoverPhoto>>, {boardId: number;postId: number;data: SetCoverPhotoDto}> = (props) => {
-          const {boardId,postId,data} = props ?? {};
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postsControllerSetPostCoverPhoto>>, {postId: number;data: SetCoverPhotoDto}> = (props) => {
+          const {postId,data} = props ?? {};
 
-          return  postsControllerSetPostCoverPhoto(boardId,postId,data,)
+          return  postsControllerSetPostCoverPhoto(postId,data,)
         }
 
 
@@ -753,11 +711,11 @@ const {mutation: mutationOptions} = options ?
  * @summary 포스트 대표 작품 지정
  */
 export const usePostsControllerSetPostCoverPhoto = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postsControllerSetPostCoverPhoto>>, TError,{boardId: number;postId: number;data: SetCoverPhotoDto}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postsControllerSetPostCoverPhoto>>, TError,{postId: number;data: SetCoverPhotoDto}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postsControllerSetPostCoverPhoto>>,
         TError,
-        {boardId: number;postId: number;data: SetCoverPhotoDto},
+        {postId: number;data: SetCoverPhotoDto},
         TContext
       > => {
       return useMutation(getPostsControllerSetPostCoverPhotoMutationOptions(options), queryClient);
@@ -766,7 +724,6 @@ export const usePostsControllerSetPostCoverPhoto = <TError = unknown,
  * @summary 작품 댓글 작성
  */
 export const postsControllerCreatePhotoComment = (
-    boardId: number,
     postId: number,
     photoId: string,
     createCommentDto: CreateCommentDto,
@@ -775,7 +732,7 @@ export const postsControllerCreatePhotoComment = (
       
       
       return customAxiosInstance<CommentResponseDtoResponse>(
-      {url: `/api/v1/boards/${boardId}/posts/${postId}/photos/${photoId}/comments`, method: 'POST',
+      {url: `/api/v1/posts/${postId}/photos/${photoId}/comments`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
       data: createCommentDto, signal
     },
@@ -785,8 +742,8 @@ export const postsControllerCreatePhotoComment = (
 
 
 export const getPostsControllerCreatePhotoCommentMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postsControllerCreatePhotoComment>>, TError,{boardId: number;postId: number;photoId: string;data: CreateCommentDto}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof postsControllerCreatePhotoComment>>, TError,{boardId: number;postId: number;photoId: string;data: CreateCommentDto}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postsControllerCreatePhotoComment>>, TError,{postId: number;photoId: string;data: CreateCommentDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof postsControllerCreatePhotoComment>>, TError,{postId: number;photoId: string;data: CreateCommentDto}, TContext> => {
 
 const mutationKey = ['postsControllerCreatePhotoComment'];
 const {mutation: mutationOptions} = options ?
@@ -798,10 +755,10 @@ const {mutation: mutationOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postsControllerCreatePhotoComment>>, {boardId: number;postId: number;photoId: string;data: CreateCommentDto}> = (props) => {
-          const {boardId,postId,photoId,data} = props ?? {};
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postsControllerCreatePhotoComment>>, {postId: number;photoId: string;data: CreateCommentDto}> = (props) => {
+          const {postId,photoId,data} = props ?? {};
 
-          return  postsControllerCreatePhotoComment(boardId,postId,photoId,data,)
+          return  postsControllerCreatePhotoComment(postId,photoId,data,)
         }
 
 
@@ -819,11 +776,11 @@ const {mutation: mutationOptions} = options ?
  * @summary 작품 댓글 작성
  */
 export const usePostsControllerCreatePhotoComment = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postsControllerCreatePhotoComment>>, TError,{boardId: number;postId: number;photoId: string;data: CreateCommentDto}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postsControllerCreatePhotoComment>>, TError,{postId: number;photoId: string;data: CreateCommentDto}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postsControllerCreatePhotoComment>>,
         TError,
-        {boardId: number;postId: number;photoId: string;data: CreateCommentDto},
+        {postId: number;photoId: string;data: CreateCommentDto},
         TContext
       > => {
       return useMutation(getPostsControllerCreatePhotoCommentMutationOptions(options), queryClient);
@@ -832,7 +789,6 @@ export const usePostsControllerCreatePhotoComment = <TError = unknown,
  * @summary 작품 댓글 삭제
  */
 export const postsControllerDeletePhotoComment = (
-    boardId: number,
     postId: number,
     photoId: string,
     commentId: number,
@@ -841,7 +797,7 @@ export const postsControllerDeletePhotoComment = (
       
       
       return customAxiosInstance<DeletedCommentResponseDtoResponse>(
-      {url: `/api/v1/boards/${boardId}/posts/${postId}/photos/${photoId}/comments/${commentId}`, method: 'DELETE', signal
+      {url: `/api/v1/posts/${postId}/photos/${photoId}/comments/${commentId}`, method: 'DELETE', signal
     },
       );
     }
@@ -849,8 +805,8 @@ export const postsControllerDeletePhotoComment = (
 
 
 export const getPostsControllerDeletePhotoCommentMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postsControllerDeletePhotoComment>>, TError,{boardId: number;postId: number;photoId: string;commentId: number}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof postsControllerDeletePhotoComment>>, TError,{boardId: number;postId: number;photoId: string;commentId: number}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postsControllerDeletePhotoComment>>, TError,{postId: number;photoId: string;commentId: number}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof postsControllerDeletePhotoComment>>, TError,{postId: number;photoId: string;commentId: number}, TContext> => {
 
 const mutationKey = ['postsControllerDeletePhotoComment'];
 const {mutation: mutationOptions} = options ?
@@ -862,10 +818,10 @@ const {mutation: mutationOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postsControllerDeletePhotoComment>>, {boardId: number;postId: number;photoId: string;commentId: number}> = (props) => {
-          const {boardId,postId,photoId,commentId} = props ?? {};
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postsControllerDeletePhotoComment>>, {postId: number;photoId: string;commentId: number}> = (props) => {
+          const {postId,photoId,commentId} = props ?? {};
 
-          return  postsControllerDeletePhotoComment(boardId,postId,photoId,commentId,)
+          return  postsControllerDeletePhotoComment(postId,photoId,commentId,)
         }
 
 
@@ -883,11 +839,11 @@ const {mutation: mutationOptions} = options ?
  * @summary 작품 댓글 삭제
  */
 export const usePostsControllerDeletePhotoComment = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postsControllerDeletePhotoComment>>, TError,{boardId: number;postId: number;photoId: string;commentId: number}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postsControllerDeletePhotoComment>>, TError,{postId: number;photoId: string;commentId: number}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postsControllerDeletePhotoComment>>,
         TError,
-        {boardId: number;postId: number;photoId: string;commentId: number},
+        {postId: number;photoId: string;commentId: number},
         TContext
       > => {
       return useMutation(getPostsControllerDeletePhotoCommentMutationOptions(options), queryClient);

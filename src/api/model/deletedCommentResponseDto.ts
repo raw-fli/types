@@ -10,7 +10,8 @@ export interface DeletedCommentResponseDto {
   id: number;
   originalCommentId: number;
   postId: number;
-  boardId: number;
+  /** @nullable */
+  boardId: number | null;
   authorId: number;
   content: string;
   originalCreatedAt: string;

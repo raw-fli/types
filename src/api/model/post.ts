@@ -5,12 +5,10 @@
  * The Rawfli API description
  * OpenAPI spec version: 1.0
  */
-import type { Board } from './board';
 import type { Photo } from './photo';
 import type { User } from './user';
 
 export interface Post {
-  board: Board;
   author: User;
   title: string;
   content: string;

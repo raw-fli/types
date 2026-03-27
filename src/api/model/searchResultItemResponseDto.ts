@@ -10,9 +10,11 @@ import type { SearchResultItemResponseDtoType } from './searchResultItemResponse
 
 export interface SearchResultItemResponseDto {
   type: SearchResultItemResponseDtoType;
+  /** @nullable */
+  boardId?: number | null;
+  /** @nullable */
+  boardName?: string | null;
   id: number;
-  boardId: number;
-  boardName: string;
   title: string;
   content: string;
   author: SearchAuthorResponseDto;

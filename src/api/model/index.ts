@@ -6,6 +6,7 @@
  * OpenAPI spec version: 1.0
  */
 
+export * from './adminControllerGetDeletedArticlesParams';
 export * from './adminControllerGetDeletedCommentsParams';
 export * from './adminControllerGetDeletedPostsParams';
 export * from './adminControllerGetImagesParams';
@@ -13,6 +14,8 @@ export * from './adminControllerGetUnverifiedCamerasParams';
 export * from './adminControllerGetUnverifiedLensesParams';
 export * from './adminControllerMergeCameras201';
 export * from './adminControllerMergeLenses201';
+export * from './adminDeletedArticleListResponseDto';
+export * from './adminDeletedArticleListResponseDtoResponse';
 export * from './adminDeletedCommentListResponseDto';
 export * from './adminDeletedCommentListResponseDtoResponse';
 export * from './adminDeletedPostListResponseDto';
