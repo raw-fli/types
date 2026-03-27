@@ -5,10 +5,12 @@
  * The Rawfli API description
  * OpenAPI spec version: 1.0
  */
+import type { CreatePostPhotoDto } from './createPostPhotoDto';
 
 export interface CreatePostDto {
   title: string;
   content: string;
+  photos?: CreatePostPhotoDto[];
   imageIds?: string[];
   photoDescriptions?: string[];
 }

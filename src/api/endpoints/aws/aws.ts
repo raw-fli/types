@@ -6,22 +6,200 @@
  * OpenAPI spec version: 1.0
  */
 import {
-  useMutation
+  useInfiniteQuery,
+  useMutation,
+  useQuery
 } from '@tanstack/react-query';
 import type {
+  DataTag,
+  DefinedInitialDataOptions,
+  DefinedUseInfiniteQueryResult,
+  DefinedUseQueryResult,
+  InfiniteData,
   MutationFunction,
   QueryClient,
+  QueryFunction,
+  QueryKey,
+  UndefinedInitialDataOptions,
+  UseInfiniteQueryOptions,
+  UseInfiniteQueryResult,
   UseMutationOptions,
-  UseMutationResult
+  UseMutationResult,
+  UseQueryOptions,
+  UseQueryResult
 } from '@tanstack/react-query';
 
 import type {
+  AwsControllerGetMyImagesParams,
   AwsControllerUploadFile201,
   AwsControllerUploadFileBody,
-  Image
+  Image,
+  MyImageListResponseDtoResponse
 } from '../../model';
 
 import { customAxiosInstance } from '../../../mutator';
+
+
+
+
+/**
+ * @summary 내 업로드 이미지 목록 조회
+ */
+export const awsControllerGetMyImages = (
+    params?: AwsControllerGetMyImagesParams,
+ signal?: AbortSignal
+) => {
+      
+      
+      return customAxiosInstance<MyImageListResponseDtoResponse>(
+      {url: `/api/v1/aws/images/me`, method: 'GET',
+        params, signal
+    },
+      );
+    }
+  
+
+
+
+export const getAwsControllerGetMyImagesInfiniteQueryKey = (params?: AwsControllerGetMyImagesParams,) => {
+    return [
+    'infinite', `/api/v1/aws/images/me`, ...(params ? [params] : [])
+    ] as const;
+    }
+
+export const getAwsControllerGetMyImagesQueryKey = (params?: AwsControllerGetMyImagesParams,) => {
+    return [
+    `/api/v1/aws/images/me`, ...(params ? [params] : [])
+    ] as const;
+    }
+
+    
+export const getAwsControllerGetMyImagesInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof awsControllerGetMyImages>>>, TError = unknown>(params?: AwsControllerGetMyImagesParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof awsControllerGetMyImages>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getAwsControllerGetMyImagesInfiniteQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof awsControllerGetMyImages>>> = ({ signal }) => awsControllerGetMyImages(params, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof awsControllerGetMyImages>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type AwsControllerGetMyImagesInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof awsControllerGetMyImages>>>
+export type AwsControllerGetMyImagesInfiniteQueryError = unknown
+
+
+export function useAwsControllerGetMyImagesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof awsControllerGetMyImages>>>, TError = unknown>(
+ params: undefined |  AwsControllerGetMyImagesParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof awsControllerGetMyImages>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof awsControllerGetMyImages>>,
+          TError,
+          Awaited<ReturnType<typeof awsControllerGetMyImages>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useAwsControllerGetMyImagesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof awsControllerGetMyImages>>>, TError = unknown>(
+ params?: AwsControllerGetMyImagesParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof awsControllerGetMyImages>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof awsControllerGetMyImages>>,
+          TError,
+          Awaited<ReturnType<typeof awsControllerGetMyImages>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useAwsControllerGetMyImagesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof awsControllerGetMyImages>>>, TError = unknown>(
+ params?: AwsControllerGetMyImagesParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof awsControllerGetMyImages>>, TError, TData>>, }
+ , queryClient?: QueryClient
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary 내 업로드 이미지 목록 조회
+ */
+
+export function useAwsControllerGetMyImagesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof awsControllerGetMyImages>>>, TError = unknown>(
+ params?: AwsControllerGetMyImagesParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof awsControllerGetMyImages>>, TError, TData>>, }
+ , queryClient?: QueryClient 
+ ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getAwsControllerGetMyImagesInfiniteQueryOptions(params,options)
+
+  const query = useInfiniteQuery(queryOptions, queryClient) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+
+
+
+export const getAwsControllerGetMyImagesQueryOptions = <TData = Awaited<ReturnType<typeof awsControllerGetMyImages>>, TError = unknown>(params?: AwsControllerGetMyImagesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof awsControllerGetMyImages>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getAwsControllerGetMyImagesQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof awsControllerGetMyImages>>> = ({ signal }) => awsControllerGetMyImages(params, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof awsControllerGetMyImages>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type AwsControllerGetMyImagesQueryResult = NonNullable<Awaited<ReturnType<typeof awsControllerGetMyImages>>>
+export type AwsControllerGetMyImagesQueryError = unknown
+
+
+export function useAwsControllerGetMyImages<TData = Awaited<ReturnType<typeof awsControllerGetMyImages>>, TError = unknown>(
+ params: undefined |  AwsControllerGetMyImagesParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof awsControllerGetMyImages>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof awsControllerGetMyImages>>,
+          TError,
+          Awaited<ReturnType<typeof awsControllerGetMyImages>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useAwsControllerGetMyImages<TData = Awaited<ReturnType<typeof awsControllerGetMyImages>>, TError = unknown>(
+ params?: AwsControllerGetMyImagesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof awsControllerGetMyImages>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof awsControllerGetMyImages>>,
+          TError,
+          Awaited<ReturnType<typeof awsControllerGetMyImages>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useAwsControllerGetMyImages<TData = Awaited<ReturnType<typeof awsControllerGetMyImages>>, TError = unknown>(
+ params?: AwsControllerGetMyImagesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof awsControllerGetMyImages>>, TError, TData>>, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary 내 업로드 이미지 목록 조회
+ */
+
+export function useAwsControllerGetMyImages<TData = Awaited<ReturnType<typeof awsControllerGetMyImages>>, TError = unknown>(
+ params?: AwsControllerGetMyImagesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof awsControllerGetMyImages>>, TError, TData>>, }
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getAwsControllerGetMyImagesQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
 
 
 
