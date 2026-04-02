@@ -29,6 +29,7 @@ export * from './adminInfoDtoResponse';
 export * from './adminTokenDto';
 export * from './adminTokenDtoResponse';
 export * from './article';
+export * from './articleControllerEditArticle201';
 export * from './articleControllerGetArticlesParams';
 export * from './articleControllerGetPopularArticlesParams';
 export * from './articleControllerToggleLike201';

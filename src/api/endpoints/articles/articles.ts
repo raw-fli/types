@@ -30,6 +30,7 @@ import type {
 } from '@tanstack/react-query';
 
 import type {
+  ArticleControllerEditArticle201,
   ArticleControllerGetArticlesParams,
   ArticleControllerGetPopularArticlesParams,
   ArticleControllerToggleLike201,
@@ -637,6 +638,71 @@ export function useArticleControllerGetArticle<TData = Awaited<ReturnType<typeof
 
 
 /**
+ * @summary 게시글 수정
+ */
+export const articleControllerEditArticle = (
+    boardId: number,
+    articleId: number,
+    createArticleDto: CreateArticleDto,
+ signal?: AbortSignal
+) => {
+      
+      
+      return customAxiosInstance<ArticleResponseDtoResponse | ArticleControllerEditArticle201>(
+      {url: `/api/v1/boards/${boardId}/articles/${articleId}`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: createArticleDto, signal
+    },
+      );
+    }
+  
+
+
+export const getArticleControllerEditArticleMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof articleControllerEditArticle>>, TError,{boardId: number;articleId: number;data: CreateArticleDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof articleControllerEditArticle>>, TError,{boardId: number;articleId: number;data: CreateArticleDto}, TContext> => {
+
+const mutationKey = ['articleControllerEditArticle'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof articleControllerEditArticle>>, {boardId: number;articleId: number;data: CreateArticleDto}> = (props) => {
+          const {boardId,articleId,data} = props ?? {};
+
+          return  articleControllerEditArticle(boardId,articleId,data,)
+        }
+
+
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type ArticleControllerEditArticleMutationResult = NonNullable<Awaited<ReturnType<typeof articleControllerEditArticle>>>
+    export type ArticleControllerEditArticleMutationBody = CreateArticleDto
+    export type ArticleControllerEditArticleMutationError = unknown
+
+    /**
+ * @summary 게시글 수정
+ */
+export const useArticleControllerEditArticle = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof articleControllerEditArticle>>, TError,{boardId: number;articleId: number;data: CreateArticleDto}, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof articleControllerEditArticle>>,
+        TError,
+        {boardId: number;articleId: number;data: CreateArticleDto},
+        TContext
+      > => {
+      return useMutation(getArticleControllerEditArticleMutationOptions(options), queryClient);
+    }
+    /**
  * @summary 게시글 삭제
  */
 export const articleControllerDeleteArticle = (
