@@ -8,6 +8,7 @@
 
 export interface CreateUserDto {
   email: string;
+  /** @pattern /^[a-zA-Z0-9가-힣]+$/ */
   username: string;
   /** @minLength 6 */
   password: string;
