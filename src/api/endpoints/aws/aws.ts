@@ -30,11 +30,11 @@ import type {
 } from '@tanstack/react-query';
 
 import type {
+  AwsControllerCreateUploadPresignedUrls201,
   AwsControllerGetMyImagesParams,
-  AwsControllerUploadFile201,
-  AwsControllerUploadFileBody,
-  Image,
-  MyImageListResponseDtoResponse
+  CreatePresignedUploadUrlDto,
+  MyImageListResponseDtoResponse,
+  PresignedUploadUrlResponseDtoResponse
 } from '../../model';
 
 import { customAxiosInstance } from '../../../mutator';
@@ -205,32 +205,29 @@ export function useAwsControllerGetMyImages<TData = Awaited<ReturnType<typeof aw
 
 
 /**
- * @summary 이미지 업로드
+ * @summary 이미지 업로드용 presigned URL 발급
  */
-export const awsControllerUploadFile = (
-    awsControllerUploadFileBody: AwsControllerUploadFileBody,
+export const awsControllerCreateUploadPresignedUrls = (
+    createPresignedUploadUrlDto: CreatePresignedUploadUrlDto,
  signal?: AbortSignal
 ) => {
       
-      const formData = new FormData();
-if(awsControllerUploadFileBody.images !== undefined) {
- awsControllerUploadFileBody.images.forEach(value => formData.append(`images`, value));
- }
-
-      return customAxiosInstance<Image[] | AwsControllerUploadFile201>(
-      {url: `/api/v1/aws/upload`, method: 'POST',
-       data: formData, signal
+      
+      return customAxiosInstance<PresignedUploadUrlResponseDtoResponse | AwsControllerCreateUploadPresignedUrls201>(
+      {url: `/api/v1/aws/upload/presigned-urls`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: createPresignedUploadUrlDto, signal
     },
       );
     }
   
 
 
-export const getAwsControllerUploadFileMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof awsControllerUploadFile>>, TError,{data: AwsControllerUploadFileBody}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof awsControllerUploadFile>>, TError,{data: AwsControllerUploadFileBody}, TContext> => {
+export const getAwsControllerCreateUploadPresignedUrlsMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof awsControllerCreateUploadPresignedUrls>>, TError,{data: CreatePresignedUploadUrlDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof awsControllerCreateUploadPresignedUrls>>, TError,{data: CreatePresignedUploadUrlDto}, TContext> => {
 
-const mutationKey = ['awsControllerUploadFile'];
+const mutationKey = ['awsControllerCreateUploadPresignedUrls'];
 const {mutation: mutationOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
@@ -240,10 +237,10 @@ const {mutation: mutationOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof awsControllerUploadFile>>, {data: AwsControllerUploadFileBody}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof awsControllerCreateUploadPresignedUrls>>, {data: CreatePresignedUploadUrlDto}> = (props) => {
           const {data} = props ?? {};
 
-          return  awsControllerUploadFile(data,)
+          return  awsControllerCreateUploadPresignedUrls(data,)
         }
 
 
@@ -253,21 +250,21 @@ const {mutation: mutationOptions} = options ?
 
   return  { mutationFn, ...mutationOptions }}
 
-    export type AwsControllerUploadFileMutationResult = NonNullable<Awaited<ReturnType<typeof awsControllerUploadFile>>>
-    export type AwsControllerUploadFileMutationBody = AwsControllerUploadFileBody
-    export type AwsControllerUploadFileMutationError = unknown
+    export type AwsControllerCreateUploadPresignedUrlsMutationResult = NonNullable<Awaited<ReturnType<typeof awsControllerCreateUploadPresignedUrls>>>
+    export type AwsControllerCreateUploadPresignedUrlsMutationBody = CreatePresignedUploadUrlDto
+    export type AwsControllerCreateUploadPresignedUrlsMutationError = unknown
 
     /**
- * @summary 이미지 업로드
+ * @summary 이미지 업로드용 presigned URL 발급
  */
-export const useAwsControllerUploadFile = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof awsControllerUploadFile>>, TError,{data: AwsControllerUploadFileBody}, TContext>, }
+export const useAwsControllerCreateUploadPresignedUrls = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof awsControllerCreateUploadPresignedUrls>>, TError,{data: CreatePresignedUploadUrlDto}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
-        Awaited<ReturnType<typeof awsControllerUploadFile>>,
+        Awaited<ReturnType<typeof awsControllerCreateUploadPresignedUrls>>,
         TError,
-        {data: AwsControllerUploadFileBody},
+        {data: CreatePresignedUploadUrlDto},
         TContext
       > => {
-      return useMutation(getAwsControllerUploadFileMutationOptions(options), queryClient);
+      return useMutation(getAwsControllerCreateUploadPresignedUrlsMutationOptions(options), queryClient);
     }
     
